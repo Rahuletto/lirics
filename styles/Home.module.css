@@ -75,8 +75,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 99vw;
-  height: 99vh;
+  width: 99.8vw;
+  height: 99.8vh;
   z-index: 1;
   background-repeat: no-repeat;
   background-size: cover;
@@ -93,8 +93,8 @@
   -webkit-filter: url(#blur);
   background-color: #1717174d;
   content: "";
-  width: 99vw;
-  height: 99vh;
+  width: 99.8vw;
+  height: 99.8vh;
 }
 
 .left {
@@ -191,7 +191,7 @@
     justify-content: space-evenly;
     align-items: flex-start;
     padding: 2rem;
-    height: 89vh;
+    height: 99.8vh;
   }
 
   .lyrics {

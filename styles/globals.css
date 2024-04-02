@@ -13,7 +13,7 @@
 
 html,
 body {
-  min-height: 99vh;
+  min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility !important;
   margin: 0px;
