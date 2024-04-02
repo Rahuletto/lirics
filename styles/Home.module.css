@@ -1,11 +1,25 @@
 .main {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 72px;
   height: -webkit-fill-available;
+  height: stretch;
   min-height: 93vh;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   padding: 2rem 4rem;
+  background: -o-radial-gradient(
+    center,
+    ellipse,
+    rgb(0 0 0 / 0%) 0%,
+    rgb(0 0 0) 70%,
+    rgb(0 0 0) 100%
+  );
   background: radial-gradient(
     ellipse at center,
     rgb(0 0 0 / 0%) 0%,
@@ -17,19 +31,43 @@
 .lyrics {
   margin-top: -80px;
   min-height: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   overflow: auto;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 18px;
   position: relative;
-  width: max-content;
+  width: -webkit-fill-available;
+  width: stretch;
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top, left bottom,
+    from(transparent),
+    color-stop(25%, black),
+    color-stop(75%, black),
+    to(transparent)
+  );
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
     black 25%,
     black 75%,
     transparent 100%
+  );
+  mask-image: -webkit-gradient(
+    linear,
+    left top, left bottom,
+    from(transparent),
+    color-stop(25%, black),
+    color-stop(75%, black),
+    to(transparent)
   );
   mask-image: linear-gradient(
     to bottom,
@@ -99,11 +137,21 @@
 
 .left {
   margin-left: 2rem;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 32px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 320px;
 }
 
@@ -128,6 +176,8 @@
   bottom: 24px;
   right: 24px;
   z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 6px;
   opacity: 0;
@@ -187,20 +237,32 @@
 
 @media only screen and (max-width: 700px) {
   .main {
-    flex-direction: column-reverse;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     padding: 2rem;
     height: 99.8vh;
   }
 
   .lyrics {
     margin-top: 0px !important;
-    width: fit-content !important;
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: stretch !important;
   }
 
   .left {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     width: 80vw;
   }
 
@@ -253,7 +315,9 @@
     text-align: center;
   }
   .left {
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .left h3 {
     font-size: 12px;

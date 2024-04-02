@@ -9,7 +9,7 @@ export default NextAuth({
       authorization: {
         params: {
           scope:
-            "user-library-read user-read-playback-state user-read-currently-playing",
+            "user-read-playback-state user-read-currently-playing",
         },
       },
     }),

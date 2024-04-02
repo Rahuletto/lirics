@@ -41,10 +41,13 @@ button {
 }
 
 .scrollable {
-  justify-content: flex-start !important;
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: flex-start !important;
   overflow: auto !important;
   height: 80vh;
   width: -webkit-fill-available !important;
+  width: stretch;
   scroll-behavior: smooth;
   margin-top: 0px !important;
 }
@@ -56,7 +59,9 @@ button {
 #homelyric {
   scroll-behavior: smooth;
   height: 250px;
-  justify-content: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 #homelyric::-webkit-scrollbar {
@@ -95,6 +100,11 @@ button {
 
 ::-webkit-scrollbar-button {
   display: none;
+}
+
+::-moz-selection {
+  background-color: #1db954;
+  color: rgb(10, 10, 10);
 }
 
 ::selection {
