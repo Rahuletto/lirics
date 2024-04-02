@@ -1,0 +1,101 @@
+:root {
+  --color: #efefef;
+}
+
+* {
+  font-family: var(--main-font);
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+}
+
+html,
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility !important;
+  margin: 0px;
+  overflow: hidden;
+  background: rgb(10, 10, 10);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+button {
+  color: var(--color);
+}
+
+.scrollable {
+  justify-content: flex-start !important;
+  overflow: auto !important;
+  height: 80vh;
+  width: -webkit-fill-available !important;
+  scroll-behavior: smooth;
+  margin-top: 0px !important;
+}
+
+.scrollable p {
+  opacity: 0.4 !important;
+}
+
+#homelyric {
+  scroll-behavior: smooth;
+  height: 250px;
+  justify-content: flex-start;
+}
+
+#homelyric::-webkit-scrollbar {
+  width: 0px;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  cursor: pointer;
+  border: 0px none;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}
+
+/* scrollbar itself */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::selection {
+  background-color: #1DB954;
+  color: rgb(10, 10, 10);
+
+}
+
+::-moz-selection {
+  background-color: #1DB954;
+  color: rgb(10, 10, 10);
+}

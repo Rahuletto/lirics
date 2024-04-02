@@ -1,0 +1,36 @@
+{
+    "name": "liric.",
+    "short_name": "liric.",
+    "lang": "en",
+    "screenshots": [
+      {
+        "src": "/screenshot/narrow.png",
+        "type": "image/png",
+        "sizes": "540x720",
+        "form_factor": "narrow"
+      },
+      {
+        "src": "/screenshot/wide.png",
+        "type": "image/png",
+        "sizes": "1024x593",
+        "form_factor": "wide"
+      }
+    ],
+    "description": "Spotify lyrics didnt work so i took things into my own hands lol. A fun project.",
+    "icons": [
+      {
+        "src": "/favicon.svg",
+        "sizes": "1024x1024",
+        "type": "image/svg"
+      },
+      {
+        "src": "/liric.png",
+        "sizes": "400x400",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display_override": ["standalone"],
+    "display": "fullscreen",
+    "orientation": "portrait"
+  }
