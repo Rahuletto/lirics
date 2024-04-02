@@ -11,9 +11,9 @@ It also provides three drafts just to make sure you can vibe to the song even if
 
 ### Screenshots:
 PC/Laptop:
-[!wide](/public/screenshot/wide.png)
+![wide](/public/screenshot/wide.png)
 
 Mobile:
-[!narrow](/public/screenshot/narrow.png)
+![narrow](/public/screenshot/narrow.png)
 
 This is not meant to be a production level application but rather a fun lil thing. Please self-host if possible.
