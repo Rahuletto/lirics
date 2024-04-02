@@ -32,5 +32,5 @@
     "start_url": "/",
     "display_override": ["standalone"],
     "display": "fullscreen",
-    "orientation": "portrait"
+    "orientation": "any"
   }
