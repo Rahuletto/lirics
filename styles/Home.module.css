@@ -5,9 +5,13 @@
   align-items: center;
   justify-content: flex-start;
   padding: 2rem 4rem;
-  
+  background: radial-gradient(
+    ellipse at center,
+    rgb(0 0 0 / 0%) 0%,
+    rgb(0 0 0) 70%,
+    rgb(0 0 0) 100%
+  );
 }
-
 
 .lyrics {
   margin-top: -80px;
@@ -19,12 +23,23 @@
   gap: 18px;
   position: relative;
   width: max-content;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 25%,
+    black 75%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 25%,
+    black 75%,
+    transparent 100%
+  );
   padding: 2rem 0rem;
   z-index: 2;
 }
-
 
 .lyrics p {
   opacity: 0.5;
@@ -57,23 +72,26 @@
 
 .backdrop {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   width: 99vw;
   height: 99vh;
   z-index: 1;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: url(#blur11);
-  -webkit-filter: url(#blur11);
+
+  filter: url(#blur);
+  -webkit-filter: url(#blur);
 }
 
 .backdrop::after {
   position: absolute;
   top: 0;
   left: 0;
+  filter: url(#blur);
+  -webkit-filter: url(#blur);
   background-color: #1717174d;
-  content: '';
+  content: "";
   width: 99vw;
   height: 99vh;
 }
@@ -203,7 +221,6 @@
     font-size: 14px;
     font-weight: 400;
     text-align: left;
-
   }
 
   .drafts {
@@ -212,7 +229,6 @@
   }
 }
 
-
 @media only screen and (max-width: 440px) {
   .main {
     padding: 24px !important;
@@ -220,7 +236,6 @@
   .left h1 {
     font-size: 20px;
     text-align: center;
-
   }
   .left {
     justify-content: center;
@@ -228,11 +243,10 @@
   .left h3 {
     font-size: 12px;
     text-align: center;
-
   }
 
   .left {
-    gap: 12px
+    gap: 12px;
   }
 
   .lyrics p {

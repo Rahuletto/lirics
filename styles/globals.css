@@ -14,7 +14,6 @@
 html,
 body {
   min-height: 99vh;
-  max-width: 99.5vw;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility !important;
   margin: 0px;
@@ -30,6 +29,15 @@ h5,
 p,
 button {
   color: var(--color);
+}
+
+.grain {
+  isolation: isolate;
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.3;
+  mix-blend-mode: soft-light;
 }
 
 .scrollable {
@@ -85,18 +93,16 @@ button {
   border-radius: 16px;
 }
 
-
 ::-webkit-scrollbar-button {
   display: none;
 }
 
 ::selection {
-  background-color: #1DB954;
+  background-color: #1db954;
   color: rgb(10, 10, 10);
-
 }
 
 ::-moz-selection {
-  background-color: #1DB954;
+  background-color: #1db954;
   color: rgb(10, 10, 10);
 }

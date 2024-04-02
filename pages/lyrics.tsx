@@ -53,7 +53,7 @@ export default function Lyrical() {
       })
         .then((res) => res.json())
         .then((d: { data: Data }) => {
-          if (d.data.item) {
+          if (d.data?.item) {
             d.data.timestamp = Date.now();
             setData(d.data);
             if (!song || song?.uri !== (d.data as Data).item.uri) {
@@ -133,21 +133,38 @@ export default function Lyrical() {
   return (
     <>
       <svg style={{ display: "none" }} role="none">
-        <filter id="blur11">
+        <filter id="blur">
           <feGaussianBlur stdDeviation="80" edgeMode="duplicate" />
         </filter>
+      </svg>
+
+      <svg className="grain" width="100%" height="100%">
+        <filter id="pedroduarteisalegend">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.8"
+            numOctaves="4"
+            stitchTiles="stitch"
+          ></feTurbulence>
+        </filter>
+        <rect
+          width="100%"
+          height="100%"
+          filter="url(#pedroduarteisalegend)"
+        ></rect>
       </svg>
 
       <main className={styles.main}>
         <button className={styles.back} onClick={() => router.push("/")}>
           {"<"}
         </button>
-        <div
-          className={styles.backdrop}
-          style={{ backgroundImage: `url(${song?.image})` }}
-        ></div>
+
         {status === "authenticated" && session && data && song ? (
           <>
+            <div
+              className={styles.backdrop}
+              style={{ backgroundImage: `url(${song?.image})` }}
+            ></div>
             <div className={["scrollable", styles.lyrics].join(" ")}>
               {lyrics && lyrics.slice(0, -4)[0] ? (
                 <>

@@ -66,7 +66,7 @@ export default function Home() {
       })
         .then((res) => res.json())
         .then((d: { data: Data }) => {
-          if (d.data.item) {
+          if (d.data?.item) {
             d.data.timestamp = Date.now();
             setData(d.data);
             if (!song || song?.uri !== (d.data as Data).item.uri) {
@@ -132,17 +132,33 @@ export default function Home() {
   return (
     <>
       <svg style={{ display: "none" }} role="none">
-        <filter id="blur11">
+        <filter id="blur">
           <feGaussianBlur stdDeviation="80" edgeMode="duplicate" />
         </filter>
       </svg>
+      <svg className="grain" width="100%" height="100%">
+        <filter id="pedroduarteisalegend">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.8"
+            numOctaves="4"
+            stitchTiles="stitch"
+          ></feTurbulence>
+        </filter>
+        <rect
+          width="100%"
+          height="100%"
+          filter="url(#pedroduarteisalegend)"
+        ></rect>
+      </svg>
+
       <main className={styles.main}>
-        <div
-          className={styles.backdrop}
-          style={{ backgroundImage: `url(${song?.image})` }}
-        ></div>
         {status === "authenticated" && session && data && song ? (
           <>
+            <div
+              className={styles.backdrop}
+              style={{ backgroundImage: `url(${song?.image})` }}
+            ></div>
             <div className={styles.left}>
               <img src={song.image} className={styles.image} />
               <div className={styles.title}>
