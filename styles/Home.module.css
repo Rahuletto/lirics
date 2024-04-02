@@ -1,7 +1,8 @@
 .main {
   display: flex;
   gap: 72px;
-  height: 94vh;
+  height: -webkit-fill-available;
+  min-height: 93vh;
   align-items: center;
   justify-content: flex-start;
   padding: 2rem 4rem;
@@ -187,7 +188,7 @@
 @media only screen and (max-width: 700px) {
   .main {
     flex-direction: column-reverse;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: flex-start;
     padding: 2rem;
     height: 89vh;
@@ -233,6 +234,20 @@
   .main {
     padding: 24px !important;
   }
+
+  .lyrics p {
+    font-size: 16px;
+  }
+
+  .lyrics h3 {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .image {
+    display: none;
+  }
   .left h1 {
     font-size: 20px;
     text-align: center;
@@ -247,17 +262,5 @@
 
   .left {
     gap: 12px;
-  }
-
-  .lyrics p {
-    font-size: 16px;
-  }
-
-  .lyrics h3 {
-    font-size: 22px;
-  }
-
-  .image {
-    display: none;
   }
 }
