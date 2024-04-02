@@ -149,24 +149,28 @@ export default function Lyrical() {
         {status === "authenticated" && session && data && song ? (
           <>
             <div className={["scrollable", styles.lyrics].join(" ")}>
-              {lyrics && lyrics.slice(0,-4)[0] ? (
+              {lyrics && lyrics.slice(0, -4)[0] ? (
                 <>
                   {lyrics
                     .slice(
                       0,
                       lyrics.findIndex((a) => current?.seconds === a.seconds)
                     )
-                    .map((a) => (
-                      <p>{decodeURI(decodeURI(a.lyrics))}</p>
+                    .map((a, i) => (
+                      <p key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
                     ))}
-                  {current && <h3 className="focus">{decodeURI(decodeURI(current.lyrics))}</h3>}
+                  {current && (
+                    <h3 className="focus">
+                      {decodeURI(decodeURI(current.lyrics))}
+                    </h3>
+                  )}
                   {lyrics
                     .slice(
                       lyrics.findIndex((a) => current?.seconds === a.seconds)
                     )
                     .slice(1)
-                    .map((a) => (
-                      <p>{decodeURI(decodeURI(a.lyrics))}</p>
+                    .map((a, i) => (
+                      <p key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
                     ))}
                 </>
               ) : (

@@ -146,7 +146,11 @@ export default function Home() {
             <div className={styles.left}>
               <img src={song.image} className={styles.image} />
               <div className={styles.title}>
-                <h1>{(song.name.length > 18 ? song.name.slice(0, 18) + "..." : song.name)}</h1>
+                <h1>
+                  {song.name.length > 18
+                    ? song.name.slice(0, 18) + "..."
+                    : song.name}
+                </h1>
                 <h3>{song.artist}</h3>
               </div>
             </div>
@@ -165,8 +169,8 @@ export default function Home() {
                       lyrics.findIndex((a) => current?.seconds === a.seconds)
                     )
                     .slice(-3)
-                    .map((a) => (
-                      <p>{a.lyrics}</p>
+                    .map((a, i) => (
+                      <p key={i}>{a.lyrics}</p>
                     ))}
                   {current && <h3 className="focus">{current.lyrics}</h3>}
                   {lyrics
@@ -174,8 +178,8 @@ export default function Home() {
                       lyrics.findIndex((a) => current?.seconds === a.seconds)
                     )
                     .slice(1, 5)
-                    .map((a) => (
-                      <p>{a.lyrics}</p>
+                    .map((a, i) => (
+                      <p key={i}>{a.lyrics}</p>
                     ))}
                 </>
               ) : (
