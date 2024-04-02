@@ -1,4 +1,4 @@
-# liric.
+# lirics.
 Spotify lyrics didnt work so i took things into my own hands lol. A fun project.
 
 > [!IMPORTANT]

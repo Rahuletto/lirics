@@ -23,10 +23,10 @@ export default function App({
       <Head>
         <link rel="manifest" href="/manifest.json" />
 
-        <meta name="application-name" content="liric." />
+        <meta name="application-name" content="lirics." />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="liric." />
+        <meta name="apple-mobile-web-app-title" content="lirics." />
         <meta
           name="description"
           content="Spotify lyrics didnt work so i took things into my own hands lol. A fun project."
@@ -35,16 +35,16 @@ export default function App({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-tap-highlight" content="no" />
 
-        <title>liric.</title>
-        <meta name="title" content="liric." />
+        <title>lirics.</title>
+        <meta name="title" content="lirics." />
         <meta
           name="description"
           content="Spotify lyrics didnt work so i took things into my own hands lol. A fun project."
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://liric.vercel.app" />
-        <meta property="og:title" content="liric." />
+        <meta property="og:url" content="https://lirics.vercel.app" />
+        <meta property="og:title" content="lirics." />
 
         <meta
           property="og:description"
@@ -52,8 +52,8 @@ export default function App({
         />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://liric.vercel.app" />
-        <meta property="twitter:title" content="liric." />
+        <meta property="twitter:url" content="https://lirics.vercel.app" />
+        <meta property="twitter:title" content="lirics." />
 
         <meta
           property="twitter:description"
