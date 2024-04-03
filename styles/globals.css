@@ -92,7 +92,7 @@ button {
   font-weight: 500;
   transform-origin: left;
   margin: 0;
-  margin-top: -6px !important;
+  margin-top: -6px;
 }
 
 .hail {
@@ -107,9 +107,10 @@ button {
 }
 
 .current {
-  transform: scale(1.2) !important;
+  transform: scale(1) !important;
   opacity: 1 !important;
   font-weight: 700 !important;
+  margin-top: 0px !important;
 }
 
 ::-webkit-scrollbar {
