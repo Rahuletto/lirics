@@ -60,7 +60,7 @@ export default function Home() {
   
   useEffect(() => {
     centerInParent();
-    if(lyrics && lyrics[0]){
+    if(lyrics && lyrics[0] && current){
     const cL = lyrics.find(a => a.seconds === current.seconds)
     if(cL.length > 1) {
       const h = cL.reduce(function(a, b) {
