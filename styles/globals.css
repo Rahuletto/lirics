@@ -85,7 +85,7 @@ button {
 
 .lyric {
   max-width: 80%;
-  font-size: 52px;
+  font-size: 42px !important;
   opacity: 0.5;
   transform: scale(0.8);
   color: var(--color);
