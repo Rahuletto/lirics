@@ -61,10 +61,16 @@ button {
   width: stretch;
   padding-top: 32px;
   scroll-behavior: smooth;
-  height: 350px;
+  height: 200px;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+@media only screen and (max-width: 450px) {
+ #homelyric {
+  height: 200px !important:
+ }
 }
 
 #homelyric::-webkit-scrollbar {
