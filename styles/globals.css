@@ -119,6 +119,7 @@ button {
   opacity: 1 !important;
   font-weight: 700 !important;
   margin-top: 0px !important;
+  margin-bottom: 6px !important;
 }
 
 ::-webkit-scrollbar {
