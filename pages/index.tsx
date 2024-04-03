@@ -31,8 +31,8 @@ export default function Home() {
 
 
     function centerInParent() {
-    const parent = document.querySelector(".scrollable") as HTMLElement;
-    const child = document.querySelector(".focus") as HTMLElement;
+    const parent = document.querySelector("#homelyric") as HTMLElement;
+    const child = document.querySelector(".current") as HTMLElement;
 
     if (child) {
       var parentRect = parent.getBoundingClientRect();
