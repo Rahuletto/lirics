@@ -30,6 +30,8 @@ export default function Home() {
   const [selectedDraft, setSelected] = useState<number>(1);
 
 
+  const [hail, setHail] = useState('')
+  
     function centerInParent() {
     const parent = document.querySelector("#homelyric") as HTMLElement;
     const child = document.querySelector(".current") as HTMLElement;
@@ -39,7 +41,7 @@ export default function Home() {
       var childRect = child.getBoundingClientRect();
 
       parent.scrollTop +=
-        childRect.top + parentRect.top - parent.offsetHeight / 2;
+        childRect.top - parentRect.top - parent.clientHeight / 2;
     }
   }
 
@@ -58,6 +60,13 @@ export default function Home() {
   
   useEffect(() => {
     centerInParent();
+    const cL = lyrics.find(a => a.seconds === current.seconds)
+    if(cL.length > 1) {
+      const h = cL.reduce(function(a, b) {
+  return a.length < b.length ? a : b;
+});
+      setHail(h)
+    }
   }, [current]);
 
   useInterval(() => {
@@ -182,7 +191,7 @@ export default function Home() {
                 <>
                   {lyrics
                     .map((a, i) => (
-                      <p key={i} className={current && a.seconds === current.seconds ? "current lyric" : "lyric"}>{a.lyrics}</p>
+                      <p key={i} className={current && a.seconds === current.seconds ? (hail === a.lyrics ? "hail lyric" : "current lyric") : "lyric"}>{a.lyrics}</p>
                     ))}
     
                 </>
