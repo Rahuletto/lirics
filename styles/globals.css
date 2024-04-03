@@ -92,7 +92,7 @@ button {
 .lyric {
   transition: 0.1s ease-in !important;
   max-width: 95%;
-  font-size: 24px !important;
+  font-size: 28px !important;
   opacity: 0.5;
   transform: scale(0.6);
   color: var(--color);
