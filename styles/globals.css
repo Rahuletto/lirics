@@ -59,7 +59,7 @@ button {
 #homelyric {
   width: -webkit-fill-available !important;
   width: stretch;
-  gap: 4px !important;
+  gap: 8px !important;
   padding-top: 64px !important;
   scroll-behavior: smooth;
   height: 350px;
@@ -70,7 +70,7 @@ button {
 
 @media only screen and (min-width: 450px) {
  #homelyric {
-  height: 120px !important;
+  max-height: 120px !important;
  }
 }
 
