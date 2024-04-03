@@ -41,7 +41,7 @@ export default function Home() {
       var childRect = child.getBoundingClientRect();
 
       parent.scrollTop +=
-        childRect.top - parentRect.top - parent.clientHeight / 2;
+        childRect.top + parentRect.top - parent.clientHeight / 2;
     }
   }
 
