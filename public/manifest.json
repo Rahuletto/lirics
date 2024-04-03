@@ -2,6 +2,7 @@
     "name": "lirics.",
     "short_name": "lirics.",
     "lang": "en",
+    "background": "#0a0a0a",
     "screenshots": [
       {
         "src": "/screenshot/narrow.png",
