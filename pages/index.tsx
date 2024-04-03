@@ -40,7 +40,7 @@ export default function Home() {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
-      parent.scrollTop += 120 +
+      parent.scrollTop += 80 +
         childRect.top - parentRect.top - parent.clientHeight / 2;
     }
   }
