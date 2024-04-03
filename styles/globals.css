@@ -82,12 +82,24 @@ button {
 
 .lyric {
   font-size: 28px;
-  opacity: 0.7;
-  transform: scale(0.7);
+  opacity: 0.5;
+  transform: scale(0.6);
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
   margin: 0;
+  margin-top: -4px !important;
+}
+
+.hail {
+ opacity: 0.8 !important;
+  transform: scale(0.8) !important;
+}
+.hail:before {
+  content: '(';
+}
+.hail:after {
+ content: ')';
 }
 
 .current {
