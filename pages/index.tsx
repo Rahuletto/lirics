@@ -66,7 +66,7 @@ export default function Home() {
       const h = cL.reduce(function(a, b) {
   return a.lyrics.length < b.lyrics.length ? a : b;
 });
-      setHail(h)
+      setHail(h.lyrics)
     
     }
     }
