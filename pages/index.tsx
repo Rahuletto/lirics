@@ -40,8 +40,8 @@ export default function Home() {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
-      parent.scrollTop +=
-        childRect.top - parentRect.top - parent.clientHeight / 2;
+      parent.scrollTop =
+        childRect.top - 30
     }
   }
 
@@ -60,12 +60,15 @@ export default function Home() {
   
   useEffect(() => {
     centerInParent();
+    if(lyrics && lyrics[0]){
     const cL = lyrics.find(a => a.seconds === current.seconds)
     if(cL.length > 1) {
       const h = cL.reduce(function(a, b) {
   return a.length < b.length ? a : b;
 });
       setHail(h)
+    
+    }
     }
   }, [current]);
 
