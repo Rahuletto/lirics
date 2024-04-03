@@ -1,9 +1,38 @@
 @font-face {
-    font-family: 'SF Pro';
-    src: url('public/sf-pro-display_regular.woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "SF Pro";
+  src: url("../public/SF-Pro-Display-Semibold.otf");
+  font-weight: 600;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: "SF Pro Bold";
+  src: url("../public/SF-Pro-Display-Bold.otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("../public/SF-Pro-Display-Bold.otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("../public/SF-Pro-Display-Semibold.otf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("../public/SF-Pro-Display-Regular.otf");
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   --color: #efefef;
 }
@@ -48,8 +77,8 @@ button {
 
 .scrollable {
   -webkit-box-pack: start !important;
-      -ms-flex-pack: start !important;
-          justify-content: flex-start !important;
+  -ms-flex-pack: start !important;
+  justify-content: flex-start !important;
   overflow: auto !important;
   height: 80vh;
   width: -webkit-fill-available !important;
@@ -70,17 +99,17 @@ button {
   scroll-behavior: smooth;
   height: 350px;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
 
 @media only screen and (min-width: 500px) {
- #homelyric {
-  height: 200px !important;
-   min-height: initial !important;
- }
-  .lyric{
-  font-size: 32px !important;
+  #homelyric {
+    height: 200px !important;
+    min-height: initial !important;
+  }
+  .lyric {
+    font-size: 32px !important;
   }
 }
 
@@ -101,8 +130,8 @@ button {
 }
 
 .lyric {
-  filter: blur(3px);
-  transition: 0.1s ease-in !important;
+  filter: blur(2.5px);
+  transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   max-width: 95%;
   font-size: 26px !important;
   opacity: 0.5;
@@ -112,22 +141,24 @@ button {
   transform-origin: left;
   margin-top: -6px !important;
   margin-bottom: 3px !important;
+  -webkit-filter: blur(2.5px);
 }
 
 .hail {
   filter: blur(0px);
- opacity: 0.8 !important;
+  opacity: 0.8 !important;
   transform: scale(0.8) !important;
 }
 .hail:before {
-  content: '(';
+  content: "(";
 }
 .hail:after {
- content: ')';
+  content: ")";
 }
 
 .current {
   filter: blur(0px);
+  font-family: "SF Pro Bold", "SF Pro", var(--main-font) !important;
   transform: scale(1) !important;
   opacity: 1 !important;
   font-weight: 700 !important;

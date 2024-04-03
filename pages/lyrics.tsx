@@ -174,7 +174,7 @@ export default function Lyrical() {
                       lyrics.findIndex((a) => current?.seconds === a.seconds)
                     )
                     .map((a, i) => (
-                      <p key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
+                      <p className="fulllyric" key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
                     ))}
                   {current && (
                     <h3 className="focus">
@@ -187,7 +187,7 @@ export default function Lyrical() {
                     )
                     .slice(1)
                     .map((a, i) => (
-                      <p key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
+                      <p className="fulllyric" key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
                     ))}
                 </>
               ) : (

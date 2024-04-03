@@ -84,6 +84,7 @@
   opacity: 0.5;
   margin: 0;
   font-size: 18px;
+  font-weight: 600;
   text-align: left;
 }
 
@@ -157,10 +158,11 @@
 
 .left h1 {
   font-size: 26px;
+  font-weight: 600;
   margin-bottom: 4px !important;
 }
 .left h3 {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   opacity: 0.7;
 }
