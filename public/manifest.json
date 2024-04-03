@@ -31,7 +31,7 @@
       }
     ],
     "start_url": "/",
-    "display_override": ["standalone"],
-    "display": "fullscreen",
+    "display_override": ["fullscreen"],
+    "display": "standalone",
     "orientation": "any"
   }
