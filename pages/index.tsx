@@ -29,19 +29,16 @@ export default function Home() {
   const [drafts, setDrafts] = useState<any>(null);
   const [selectedDraft, setSelected] = useState<number>(1);
 
-  useEffect(() => {
-    centerInParent();
-  }, [current]);
 
-  function centerInParent() {
-    const parent = document.querySelector("#homelyric") as HTMLElement;
+    function centerInParent() {
+    const parent = document.querySelector(".scrollable") as HTMLElement;
     const child = document.querySelector(".focus") as HTMLElement;
 
     if (child) {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
-      parent.scrollTop =
+      parent.scrollTop +=
         childRect.top + parentRect.top - parent.offsetHeight / 2;
     }
   }
@@ -58,6 +55,10 @@ export default function Home() {
         data.progress_ms + (data.is_playing ? time - data.timestamp : 0)
       );
   }, [time, data]);
+  
+  useEffect(() => {
+    centerInParent();
+  }, [current]);
 
   useInterval(() => {
     if (session) {
@@ -180,23 +181,10 @@ export default function Home() {
               {lyrics && lyrics[0] ? (
                 <>
                   {lyrics
-                    .slice(
-                      0,
-                      lyrics.findIndex((a) => current?.seconds === a.seconds)
-                    )
-                    .slice(-3)
                     .map((a, i) => (
-                      <p key={i}>{a.lyrics}</p>
+                      <p key={i} className={current && a.seconds === current.seconds ? "current" : "lyric"}>{a.lyrics}</p>
                     ))}
-                  {current && <h3 className="focus">{current.lyrics}</h3>}
-                  {lyrics
-                    .slice(
-                      lyrics.findIndex((a) => current?.seconds === a.seconds)
-                    )
-                    .slice(1, 5)
-                    .map((a, i) => (
-                      <p key={i}>{a.lyrics}</p>
-                    ))}
+    
                 </>
               ) : (
                 <h3 className="focus" style={{ opacity: "0.8" }}>
