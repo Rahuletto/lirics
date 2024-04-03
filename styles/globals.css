@@ -1,9 +1,15 @@
+@font-face {
+    font-family: 'SF Pro';
+    src: url('public/sf-pro-display_regular.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 :root {
   --color: #efefef;
 }
 
 * {
-  font-family: var(--main-font);
+  font-family: "SF Pro", var(--main-font);
   transition: 0.3s ease-in-out;
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
