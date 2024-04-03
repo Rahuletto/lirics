@@ -69,7 +69,7 @@ button {
 
 @media only screen and (min-width: 450px) {
  #homelyric {
-  height: 200px !important:
+  height: 120px !important:
  }
 }
 
@@ -90,6 +90,7 @@ button {
 }
 
 .lyric {
+  transition: 0.1s ease-in !important;
   max-width: 95%;
   font-size: 24px !important;
   opacity: 0.5;
