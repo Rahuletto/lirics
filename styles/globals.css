@@ -61,7 +61,7 @@ button {
   width: stretch;
   padding-top: 32px;
   scroll-behavior: smooth;
-  height: 250px;
+  height: 400px;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -84,15 +84,14 @@ button {
 }
 
 .lyric {
-  max-width: 80%;
-  font-size: 26px !important;
+  max-width: 95%;
+  font-size: 24px !important;
   opacity: 0.5;
   transform: scale(0.6);
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
-  margin: 0;
-  margin-top: -6px;
+  margin-top: -6px !important;
 }
 
 .hail {
