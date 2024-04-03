@@ -68,11 +68,14 @@ button {
           justify-content: flex-start;
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 500px) {
  #homelyric {
   height: 200px !important;
    min-height: initial !important;
  }
+  .lyric{
+  font-size: 32px !important;
+  }
 }
 
 #homelyric::-webkit-scrollbar {
