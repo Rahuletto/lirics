@@ -84,14 +84,14 @@ button {
 }
 
 .lyric {
-  font-size: 36px;
+  font-size: 42px;
   opacity: 0.5;
   transform: scale(0.8);
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
   margin: 0;
-  margin-top: -4px !important;
+  margin-top: -6px !important;
 }
 
 .hail {
@@ -106,7 +106,7 @@ button {
 }
 
 .current {
-  transform: scale(1) !important;
+  transform: scale(1.2) !important;
   opacity: 1 !important;
   font-weight: 700 !important;
 }
