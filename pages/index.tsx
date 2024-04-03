@@ -41,7 +41,7 @@ export default function Home() {
       var childRect = child.getBoundingClientRect();
 
       parent.scrollTop =
-        childRect.top - 30
+        childRect.top - parentRect.top - parent.clientHeight / 2;
     }
   }
 
@@ -59,6 +59,7 @@ export default function Home() {
   }, [time, data]);
   
   useEffect(() => {
+    if(current){
     centerInParent();
     if(lyrics && lyrics[0] && current){
     const cL = lyrics.filter((a) => a.seconds === current.seconds)
@@ -68,6 +69,7 @@ export default function Home() {
 });
       setHail(h.lyrics)
     
+    }
     }
     }
   }, [current]);
@@ -103,7 +105,7 @@ export default function Home() {
         lyrics.filter((a) => msTosec(currentTime) >= a.seconds).splice(-1)[0]
       );
     }
-  }, 1000);
+  }, 800);
 
   useEffect(() => {
     setSelected(1);
