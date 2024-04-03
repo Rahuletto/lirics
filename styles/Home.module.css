@@ -6,12 +6,13 @@
   height: -webkit-fill-available;
   height: stretch;
   min-height: 93vh;
+
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   padding: 2rem 4rem;
   background: -o-radial-gradient(
     center,
@@ -35,20 +36,21 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   overflow: auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   gap: 18px;
   position: relative;
   width: -webkit-fill-available;
   width: stretch;
   -webkit-mask-image: -webkit-gradient(
     linear,
-    left top, left bottom,
+    left top,
+    left bottom,
     from(transparent),
     color-stop(25%, black),
     color-stop(75%, black),
@@ -63,7 +65,8 @@
   );
   mask-image: -webkit-gradient(
     linear,
-    left top, left bottom,
+    left top,
+    left bottom,
     from(transparent),
     color-stop(25%, black),
     color-stop(75%, black),
@@ -139,20 +142,20 @@
 .left {
   margin-left: 2rem;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   gap: 32px;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 320px;
 }
 
@@ -213,6 +216,32 @@
   }
 }
 
+@media only screen and (max-height: 600px) {
+  .left {
+    width: 180px;
+    gap: 18px;
+  }
+
+  .left h1 {
+    font-size: 22px !important;
+  }
+
+  .left h3 {
+    font-weight: 500;
+    font-size: 16px !important;
+  }
+
+  .image {
+    max-width: 220px;
+    max-height: 220px;
+    border-radius: 14px  ;
+    -webkit-border-radius: 14px  ;
+    -moz-border-radius: 14px  ;
+    -ms-border-radius: 14px  ;
+    -o-border-radius: 14px  ;
+}
+}
+
 @media only screen and (max-width: 776px) {
   .left {
     width: 220px;
@@ -241,16 +270,18 @@
   .main {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
     -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
     -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
     padding: 2rem;
-    height: 99.8vh;
+    padding-top: 0.5rem !important;
+    padding-bottom: 4rem !important;
+    height: 97vh;
   }
 
   .lyrics {
@@ -263,8 +294,8 @@
   .left {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     width: 80vw;
   }
 
@@ -318,8 +349,8 @@
   }
   .left {
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
   .left h3 {
     font-size: 12px;

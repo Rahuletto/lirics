@@ -32,6 +32,7 @@ export default function Home() {
 
   const [hail, setHail] = useState('')
   
+
     function centerInParent() {
     const parent = document.querySelector("#homelyric") as HTMLElement;
     const child = document.querySelector(".current") as HTMLElement;
@@ -47,6 +48,7 @@ export default function Home() {
 
   useInterval(
     () => {
+      
       if (data && data.is_playing) setTime(Date.now() - 1000);
     },
     data ? 50 : 1000
