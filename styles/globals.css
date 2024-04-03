@@ -85,9 +85,9 @@ button {
 
 .lyric {
   max-width: 80%;
-  font-size: 28px !important;
+  font-size: 26px !important;
   opacity: 0.5;
-  transform: scale(0.8);
+  transform: scale(0.6);
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
@@ -97,7 +97,7 @@ button {
 
 .hail {
  opacity: 0.8 !important;
-  transform: scale(0.9) !important;
+  transform: scale(0.8) !important;
 }
 .hail:before {
   content: '(';
