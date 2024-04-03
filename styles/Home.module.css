@@ -218,8 +218,8 @@
 
 @media only screen and (max-height: 600px) {
   .left {
-    width: 180px;
-    gap: 18px;
+    width: 30vw; 
+    gap: 32px;
   }
 
   .left h1 {
@@ -228,7 +228,7 @@
 
   .left h3 {
     font-weight: 500;
-    font-size: 16px !important;
+    font-size: 14px !important;
   }
 
   .image {
