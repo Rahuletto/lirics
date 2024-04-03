@@ -59,7 +59,7 @@ button {
 #homelyric {
   width: -webkit-fill-available !important;
   width: stretch;
-  padding-top: 32px;
+  padding-top: 64px !important;
   scroll-behavior: smooth;
   height: 350px;
   -webkit-box-pack: start;
