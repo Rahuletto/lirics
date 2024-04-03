@@ -57,6 +57,9 @@ button {
 }
 
 #homelyric {
+  width: -webkit-fill-available !important;
+  width: stretch;
+  padding-top: 32px;
   scroll-behavior: smooth;
   height: 250px;
   -webkit-box-pack: start;
@@ -83,7 +86,7 @@ button {
 .lyric {
   font-size: 28px;
   opacity: 0.5;
-  transform: scale(0.6);
+  transform: scale(0.8);
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
@@ -93,7 +96,7 @@ button {
 
 .hail {
  opacity: 0.8 !important;
-  transform: scale(0.8) !important;
+  transform: scale(0.9) !important;
 }
 .hail:before {
   content: '(';
@@ -105,7 +108,7 @@ button {
 .current {
   transform: scale(1) !important;
   opacity: 1 !important;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 ::-webkit-scrollbar {
