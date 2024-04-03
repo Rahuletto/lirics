@@ -182,7 +182,7 @@ export default function Home() {
                 <>
                   {lyrics
                     .map((a, i) => (
-                      <p key={i} className={current && a.seconds === current.seconds ? "current" : "lyric"}>{a.lyrics}</p>
+                      <p key={i} className={current && a.seconds === current.seconds ? "current lyric" : "lyric"}>{a.lyrics}</p>
                     ))}
     
                 </>
