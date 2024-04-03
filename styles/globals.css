@@ -94,7 +94,7 @@ button {
   max-width: 95%;
   font-size: 28px !important;
   opacity: 0.5;
-  transform: scale(0.6);
+  transform: scale(0.4);
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
@@ -103,7 +103,7 @@ button {
 
 .hail {
  opacity: 0.8 !important;
-  transform: scale(0.8) !important;
+  transform: scale(0.7) !important;
 }
 .hail:before {
   content: '(';
