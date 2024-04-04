@@ -77,7 +77,7 @@ export default function Home() {
   }, [current]);
 
   useInterval(() => {
-    if (session) {
+    if (session && status === "authenticated") {
       fetch("/api/spotify/pos", {
         method: "GET",
       })

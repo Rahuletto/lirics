@@ -1,9 +1,10 @@
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
-
+import { useWakeLock } from "react-screen-wake-lock";
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import { useEffect, useLayoutEffect } from "react";
 
 const inter = Inter({
   fallback: ["sans-serif"],
@@ -18,6 +19,13 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
+  const { request } = useWakeLock()
+
+
+  useEffect(() => {
+    request();
+  }, []);
+
   return (
     <SessionProvider session={session}>
       <Head>
