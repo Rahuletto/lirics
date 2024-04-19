@@ -203,7 +203,7 @@
 
 @media only screen and (min-width: 1100px) {
   .lyrics p {
-    font-size: 20px;
+    font-size: px;
   }
 
   .lyrics h3 {
@@ -331,11 +331,11 @@
   }
 
   .lyrics p {
-    font-size: 22px;
+    font-size: 16px;
   }
 
   .lyrics h3 {
-    font-size: 36px;
+    font-size: 22px;
   }
 }
 

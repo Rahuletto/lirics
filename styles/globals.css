@@ -109,7 +109,8 @@ button {
     min-height: initial !important;
   }
   .lyric {
-    font-size: 32px !important;
+    font-size: 48px !important;
+    font-weight: 800;
   }
 }
 
