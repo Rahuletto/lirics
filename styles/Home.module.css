@@ -86,7 +86,7 @@
 .lyrics p {
   opacity: 0.5;
   margin: 0;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   text-align: left;
 }
@@ -94,7 +94,7 @@
 .lyrics h3 {
   text-align: left;
   margin: 0;
-  font-size: 28px;
+  font-size: 36px;
 }
 
 .image {
