@@ -105,12 +105,16 @@ button {
 
 @media only screen and (min-width: 500px) {
   #homelyric {
+    gap: 10px !important;
     height: 200px !important;
     min-height: initial !important;
   }
   .lyric {
-    font-size: 48px !important;
-    font-weight: 800;
+    font-size: 36px !important;
+    font-weight: 800 !important;
+  }
+  .current {
+    margin: 0px !important;
   }
 }
 
