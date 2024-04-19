@@ -138,14 +138,14 @@ button {
   filter: blur(2.5px);
   transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   max-width: 95%;
-  font-size: 26px !important;
+  font-size: 26px;
   opacity: 0.5;
   transform: scale(0.6);
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
-  margin-top: -6px !important;
-  margin-bottom: 3px !important;
+  margin-top: -6px;
+  margin-bottom: 3px;
   -webkit-filter: blur(2.5px);
 }
 
