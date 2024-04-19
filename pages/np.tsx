@@ -1,15 +1,15 @@
 import styles from "@/styles/Home.module.css";
 import { useSession, signOut, signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
-import useInterval from "@/lib/useInterval";
-import { Data } from "@/typings/Position";
-import { Lyric, Lyrics } from "@/typings/Lyrics";
-import msTosec from "@/lib/msTosec";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Lyrical() {
   const router = useRouter();
+  const { status } = useSession();
 
+  useEffect(() => {
+    setTimeout(() => router.reload(), 3000)
+  }, [router])
   return (
     <>
       <svg
@@ -45,13 +45,20 @@ export default function Lyrical() {
       </svg>
 
       <main className={styles.main}>
-        <div className={styles.login}>
-          <h3>You are currently not playing.</h3>
-          <button onClick={() => router.push("/")} style={{ marginRight: 8 }}>
-            Refresh
-          </button>
-          <button onClick={() => signOut()}>Sign Out</button>
-        </div>
+        {status === "unauthenticated" ? (
+          <div className={styles.login}>
+            <h3>Please sign in to use the app.</h3>
+            <button onClick={() => signIn("spotify")}>Sign In</button>
+          </div>
+        ) : (
+          <div className={styles.login}>
+            <h3>You are currently not playing.</h3>
+            <button onClick={() => router.push("/")} style={{ marginRight: 8 }}>
+              Refresh
+            </button>
+            <button onClick={() => signOut()}>Sign Out</button>
+          </div>
+        )}
       </main>
     </>
   );

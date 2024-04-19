@@ -14,6 +14,7 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   const [data, setData] = useState<Data | null>(null);
+  const [delay, setDelay] = useState(0)
   const [song, setSong] = useState<{
     image: string;
     name: string;
@@ -29,11 +30,9 @@ export default function Home() {
   const [drafts, setDrafts] = useState<any>(null);
   const [selectedDraft, setSelected] = useState<number>(1);
 
+  const [hail, setHail] = useState("");
 
-  const [hail, setHail] = useState('')
-  
-
-    function centerInParent() {
+  function centerInParent() {
     const parent = document.querySelector("#homelyric") as HTMLElement;
     const child = document.querySelector(".current") as HTMLElement;
 
@@ -41,14 +40,13 @@ export default function Home() {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
-      parent.scrollTop += 50 +
-        childRect.top - parentRect.top - parent.clientHeight / 2;
+      parent.scrollTop +=
+        50 + childRect.top - parentRect.top - parent.clientHeight / 2;
     }
   }
 
   useInterval(
     () => {
-      
       if (data && data.is_playing) setTime(Date.now() - 1000);
     },
     data ? 50 : 1000
@@ -56,23 +54,22 @@ export default function Home() {
   useEffect(() => {
     if (data)
       setCurrentTime(
-        data.progress_ms + (data.is_playing ? time - data.timestamp : 0)
+        data.progress_ms + (data.is_playing ? time - data.timestamp + (delay * 1000) : 0) 
       );
   }, [time, data]);
-  
+
   useEffect(() => {
-    if(current){
-    centerInParent();
-    if(lyrics && lyrics[0] && current){
-    const cL = lyrics.filter((a) => a.seconds === current.seconds)
-    if(cL && cL.length > 1) {
-      const h = cL.reduce(function(a, b) {
-  return a.lyrics.length < b.lyrics.length ? a : b;
-});
-      setHail(h.lyrics)
-    
-    }
-    }
+    if (current) {
+      centerInParent();
+      if (lyrics && lyrics[0] && current) {
+        const cL = lyrics.filter((a) => a.seconds === current.seconds);
+        if (cL && cL.length > 1) {
+          const h = cL.reduce(function (a, b) {
+            return a.lyrics.length < b.lyrics.length ? a : b;
+          });
+          setHail(h.lyrics);
+        }
+      }
     }
   }, [current]);
 
@@ -88,6 +85,7 @@ export default function Home() {
             setData(d.data);
             if (!song || song?.uri !== (d.data as Data).item.uri) {
               setLyrics(null);
+              setDelay(0)
               setCurrent(null);
               setSong({
                 image: d.data.item.album.images[0].url,
@@ -176,7 +174,7 @@ export default function Home() {
               className={styles.backdrop}
               style={{ backgroundImage: `url(${song?.image})` }}
             ></div>
-            <div className={styles.left}>
+            <div className={styles.left} onClick={() => router.push("/share")}>
               <img src={song.image} className={styles.image} />
               <div className={styles.title}>
                 <h1>
@@ -196,11 +194,20 @@ export default function Home() {
             >
               {lyrics && lyrics[0] ? (
                 <>
-                  {lyrics
-                    .map((a, i) => (
-                      <p key={i} className={current && a.seconds === current.seconds ? (hail === a.lyrics ? "hail lyric" : "current lyric") : "lyric"}>{a.lyrics}</p>
-                    ))}
-    
+                  {lyrics.map((a, i) => (
+                    <p
+                      key={i}
+                      className={
+                        current && a.seconds === current.seconds
+                          ? hail === a.lyrics
+                            ? "hail lyric"
+                            : "current lyric"
+                          : "lyric"
+                      }
+                    >
+                      {a.lyrics}
+                    </p>
+                  ))}
                 </>
               ) : (
                 <h3 className="focus" style={{ opacity: "0.8" }}>
@@ -209,6 +216,7 @@ export default function Home() {
               )}
             </div>
             <div className={styles.drafts}>
+              <input type="number" value={delay} onChange={(e) => setDelay(Number(e.target.value))} ></input>
               <button
                 onClick={(e) => {
                   setSelected(0);

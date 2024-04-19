@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 import styles from "@/styles/Home.module.css";
 import { useSession, signOut, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -22,6 +20,7 @@ export default function Lyrical() {
   } | null>(null);
   const [lyrics, setLyrics] = useState<Lyrics | null>(null);
   const [current, setCurrent] = useState<Lyric | null>(null);
+  const [hail, setHail] = useState<string>("");
 
   const [time, setTime] = useState(Date.now());
   const [currentTime, setCurrentTime] = useState(0);
@@ -44,6 +43,15 @@ export default function Lyrical() {
 
   useEffect(() => {
     centerInParent();
+    if (lyrics && lyrics[0] && current) {
+      const cL = lyrics.filter((a) => a.seconds === current.seconds);
+      if (cL && cL.length > 1) {
+        const h = cL.reduce(function (a, b) {
+          return a.lyrics.length < b.lyrics.length ? a : b;
+        });
+        setHail(h.lyrics);
+      }
+    }
   }, [current]);
 
   useInterval(() => {
@@ -74,14 +82,14 @@ export default function Lyrical() {
 
   function centerInParent() {
     const parent = document.querySelector(".scrollable") as HTMLElement;
-    const child = document.querySelector(".focus") as HTMLElement;
+    const child = document.querySelector(".current") as HTMLElement;
 
     if (child) {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
       parent.scrollTop +=
-        childRect.top + parentRect.top - parent.offsetHeight / 2;
+        50 + childRect.top - parentRect.top - parent.clientHeight / 2;
     }
   }
 
@@ -168,27 +176,19 @@ export default function Lyrical() {
             <div className={["scrollable", styles.lyrics].join(" ")}>
               {lyrics && lyrics.slice(0, -4)[0] ? (
                 <>
-                  {lyrics
-                    .slice(
-                      0,
-                      lyrics.findIndex((a) => current?.seconds === a.seconds)
-                    )
-                    .map((a, i) => (
-                      <p className="fulllyric" key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
-                    ))}
-                  {current && (
-                    <h3 className="focus">
-                      {decodeURI(decodeURI(current.lyrics))}
-                    </h3>
-                  )}
-                  {lyrics
-                    .slice(
-                      lyrics.findIndex((a) => current?.seconds === a.seconds)
-                    )
-                    .slice(1)
-                    .map((a, i) => (
-                      <p className="fulllyric" key={i}>{decodeURI(decodeURI(a.lyrics))}</p>
-                    ))}
+                  {lyrics.map((a, i) => (
+                    <p
+                      key={i}
+                      className={
+                        current && a.seconds === current.seconds
+                          ? hail === a.lyrics
+                            ? "hail lyric"
+                            : "current lyric"
+                          : "lyric"}
+                    >
+                      {a.lyrics}
+                    </p>
+                  ))}
                 </>
               ) : (
                 <h3 className="focus" style={{ opacity: "0.8" }}>
@@ -196,6 +196,7 @@ export default function Lyrical() {
                 </h3>
               )}
             </div>
+
             <div className={styles.drafts}>
               <button
                 onClick={(e) => {

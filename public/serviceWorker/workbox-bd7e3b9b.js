@@ -31,8 +31,7 @@ define(['exports'], (function (exports) { 'use strict';
           return;
         }
         if (method === 'groupCollapsed') {
-          // Safari doesn't print all console.groupCollapsed() arguments:
-          // https://bugs.webkit.org/show_bug.cgi?id=182754
+
           if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
             console[method](...args);
             return;

@@ -85,12 +85,25 @@ button {
   width: stretch;
   scroll-behavior: smooth;
   margin-top: 0px !important;
+  gap: 8px !important;
 }
 
-.scrollable p {
-  opacity: 0.4 !important;
+.current.sharable {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(0, 0, 0, 0.8) !important;
 }
-
+.sharable {
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0.6 !important;
+  border-radius: 12px;
+  filter: blur(0px) !important;
+  padding: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  -webkit-filter: blur(0px) !important;
+}
 #homelyric {
   width: -webkit-fill-available !important;
   width: stretch;
@@ -103,10 +116,33 @@ button {
   justify-content: flex-start;
 }
 
+.left {
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 500px) {
+  .left {
+    flex-direction: row;
+  }
+}
+
+#share-left img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+#share-left div h1, #share-left div h3 {
+text-align: left;
+}
 @media only screen and (min-width: 500px) {
   #homelyric {
     gap: 10px !important;
-    height: 200px !important;
+    height: 300px !important;
     min-height: initial !important;
   }
   .lyric {
@@ -121,8 +157,22 @@ button {
 #homelyric::-webkit-scrollbar {
   width: 0px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-button {
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input {
+  outline: none;
+  width: 50px;
+  color: var(--color);
+}
+button, input {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 12px 24px;
   cursor: pointer;
@@ -140,13 +190,17 @@ button {
   max-width: 95%;
   font-size: 26px;
   opacity: 0.5;
-  transform: scale(0.6);
+  scale: 0.6;
   color: var(--color);
   font-weight: 500;
   transform-origin: left;
   margin-top: -6px;
   margin-bottom: 3px;
   -webkit-filter: blur(2.5px);
+  -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -moz-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -ms-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -o-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
 }
 
 .hail {
@@ -164,7 +218,7 @@ button {
 .current {
   filter: blur(0px);
   font-family: "SF Pro Bold", "SF Pro", var(--main-font) !important;
-  transform: scale(1) !important;
+  scale: 1 !important;
   opacity: 1 !important;
   font-weight: 700 !important;
   margin-top: 0px !important;
@@ -206,4 +260,79 @@ button {
 ::-moz-selection {
   background-color: #1db954;
   color: rgb(10, 10, 10);
+}
+
+@media only screen and (max-width: 440px) {
+  p.lyric {
+    font-size: 32px !important;
+  }
+  #sharelyric h2.current {
+    font-size: 22px !important;
+  }
+}
+
+.focus {
+  scale: 1.1;
+  animation: 0.3s bulk cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+  transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  transform-origin: left;
+  max-width: 80vw;
+  -webkit-animation: 0.3s bulk cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+  -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -moz-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -ms-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -o-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+}
+
+.flex-wrap {
+  
+  z-index: 2;
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#sharelyric {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 24px;
+  width: 85vw;
+}
+
+.logo-share {
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
+  width: 24px;
+  height: 24px;
+  opacity: 0.4;
+}
+
+#lirics {
+  padding: 20px;
+  padding-bottom: 0px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#share-left {
+  padding: 20px;
+  margin: 0px !important;
+  width: -webkit-fill-available !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+#share-left div div {
+  display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
 }

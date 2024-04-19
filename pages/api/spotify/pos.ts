@@ -18,7 +18,6 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
 
       const { body } = await spotifyApi.getMyCurrentPlaybackState();
 
-      console.log(body)
       return res.status(200).json({ data: body });
     } else res.status(401).json({ error: "Unauthorized" });
   } catch (err: any) {

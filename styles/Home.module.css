@@ -84,14 +84,21 @@
 }
 
 .lyrics p {
+  transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   opacity: 0.5;
   margin: 0;
   font-size: 22px;
   font-weight: 600;
   text-align: left;
+  -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -moz-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -ms-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  -o-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
 }
 
 .lyrics h3 {
+  transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+
   text-align: left;
   margin: 0;
   font-size: 36px;
@@ -201,15 +208,6 @@
   padding: 12px 16px !important;
 }
 
-@media only screen and (min-width: 1100px) {
-  .lyrics p {
-    font-size: px;
-  }
-
-  .lyrics h3 {
-    font-size: 34px;
-  }
-}
 @media only screen and (max-width: 900px) {
   .left {
     margin: 0px !important;
@@ -300,8 +298,8 @@
   }
 
   .image {
-    max-height: 64px;
-    max-width: 64px;
+    max-height: 64px !important;
+    max-width: 64px !important;
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -328,14 +326,6 @@
 @media only screen and (max-width: 440px) {
   .main {
     padding: 24px !important;
-  }
-
-  .lyrics p {
-    font-size: 16px;
-  }
-
-  .lyrics h3 {
-    font-size: 22px;
   }
 }
 
