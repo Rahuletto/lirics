@@ -55,7 +55,7 @@ export default function Home() {
   }, 3000);
 
   useEffect(() => {
-    if (!sharing && sharable.length >= 6) setSharable((e) => sharable.slice(1));
+    if (!sharing && sharable.length > 6) setSharable((e) => sharable.slice(1));
   }, [sharable]);
 
   useEffect(() => {
