@@ -13,17 +13,17 @@ export default async function GET(req: NextRequest) {
 
   try {
     const d1 = await fetch(
-      `https://api.textyl.co/api/lyrics?q=${encodeURIComponent(`${name}`)}`
+      `http://api.textyl.co/api/lyrics?q=${encodeURIComponent(`${name}`)}`
     );
 
     const d2 = await fetch(
-      `https://api.textyl.co/api/lyrics?q=${encodeURIComponent(
+      `http://api.textyl.co/api/lyrics?q=${encodeURIComponent(
         `${name} ${artists && artists[0]}`
       )}`
     );
 
     const d3 = await fetch(
-      `https://api.textyl.co/api/lyrics?q=${encodeURIComponent(
+      `http://api.textyl.co/api/lyrics?q=${encodeURIComponent(
         `${name} ${artists && artists.join(" ")}`
       )}`
     );
