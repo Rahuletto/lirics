@@ -36,6 +36,7 @@ export default async function GET(req: NextRequest) {
     if (draft2.startsWith("No")) draft2 = "{}";
     if (draft3.startsWith("No")) draft3 = "{}";
 
+    console.log(draft1, draft2,draft3)
     draft1 = JSON.parse(draft1);
     draft2 = JSON.parse(draft2);
     draft3 = JSON.parse(draft3);
