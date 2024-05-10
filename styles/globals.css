@@ -208,12 +208,6 @@ button, input {
   opacity: 0.8 !important;
   transform: scale(0.8) !important;
 }
-.hail:before {
-  content: "(";
-}
-.hail:after {
-  content: ")";
-}
 
 .current {
   filter: blur(0px);

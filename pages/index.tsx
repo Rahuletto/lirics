@@ -22,7 +22,7 @@ export default function Home() {
     uri: string;
   } | null>(null);
 
-  const lyrics = useLyrics()
+  const lyrics = useLyrics();
   const setLyrics = useChange();
 
   const [current, setCurrent] = useState<Lyric | null>(null);
@@ -102,9 +102,13 @@ export default function Home() {
 
   useInterval(() => {
     if (lyrics && lyrics[0] && data) {
-      setCurrent(
-        lyrics.filter((a) => msTosec(currentTime) >= a.seconds).splice(-1)[0]
-      );
+      const cur = lyrics
+        .filter((a) => msTosec(currentTime) >= a.seconds)
+        .splice(-1)[0];
+      const [ext, clean] = extractAndRemoveParentheses(cur.lyrics);
+
+      setCurrent({ seconds: cur.seconds, lyrics: clean.toString() });
+      setHail(ext);
     }
   }, 800);
 
@@ -172,18 +176,26 @@ export default function Home() {
               {lyrics && lyrics[0] ? (
                 <>
                   {lyrics.map((a, i) => (
-                    <p
-                      key={i}
-                      className={
-                        current && a.seconds === current.seconds
-                          ? hail === a.lyrics
-                            ? "hail lyric"
-                            : "current lyric"
-                          : "lyric"
-                      }
-                    >
-                      {a.lyrics}
-                    </p>
+                    <>
+                      <p
+                        key={i}
+                        className={
+                          current && a.seconds === current.seconds
+                            ? "current lyric"
+                            : "lyric"
+                        }
+                      >
+                        {a.lyrics}
+                      </p>
+                      {hail && a.lyrics.includes(hail) && <p
+                        key={i+1000}
+                        className={
+                          "hail lyric"
+                        }
+                      >
+                        {hail}
+                      </p>}
+                    </>
                   ))}
                 </>
               ) : (
@@ -240,4 +252,14 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+function extractAndRemoveParentheses(text: string) {
+  const pattern = /\((.*?)\)/g;
+
+  const extractedText = text.match(pattern) || [];
+
+  const cleanedText = text.replace(pattern, "").trim();
+
+  return [extractedText[0] ? extractedText.toString() : "", cleanedText];
 }
