@@ -44,7 +44,7 @@ export default function Lyrical() {
         ></rect>
       </svg>
 
-      <main className={styles.main}>
+      <main>
         {status === "unauthenticated" ? (
           <div className={styles.login}>
             <h3>Please sign in to use the app.</h3>
@@ -53,10 +53,13 @@ export default function Lyrical() {
         ) : (
           <div className={styles.login}>
             <h3>You are currently not playing.</h3>
+            <div style={{display: "flex", gap: 18}}>
             <button onClick={() => router.push("/")} style={{ marginRight: 8 }}>
               Refresh
             </button>
             <button onClick={() => signOut()}>Sign Out</button>
+            </div>
+            
           </div>
         )}
       </main>

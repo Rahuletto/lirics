@@ -18,25 +18,25 @@ const conf = {
   rewrites: async () => {
     return [
       {
-        source: '/api/lyrics',
+        source: "/py/:path*",
         destination:
-          process.env.NODE_ENV === 'development'
-            ? 'http://localhost:8000/api/lyrics'
-            : '/api/lyrics',
+          process.env.NODE_ENV === "development"
+            ? "http://127.0.0.1:8000/py/:path*"
+            : "/py/",
       },
       {
-        source: '/docs',
+        source: "/docs",
         destination:
-          process.env.NODE_ENV === 'development'
-            ? 'http://localhost:8000/docs'
-            : '/api/docs',
+          process.env.NODE_ENV === "development"
+            ? "http://127.0.0.1:8000/docs"
+            : "/api/docs",
       },
       {
-        source: '/openapi.json',
+        source: "/openapi.json",
         destination:
-          process.env.NODE_ENV === 'development'
-            ? 'http://localhost:8000/openapi.json'
-            : '/api/openapi.json',
+          process.env.NODE_ENV === "development"
+            ? "http://127.0.0.1:8000/openapi.json"
+            : "/api/openapi.json",
       },
     ];
   },

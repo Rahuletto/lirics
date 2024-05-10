@@ -105,7 +105,7 @@ export default function Lyrical() {
 
   useEffect(() => {
     if (song && song.name && song.artist && !lyrics) {
-      fetch(`/api/lyrics?query=${song.name} ${song.artist}`)
+      fetch(`/py/lyrics?query=${song.name} ${song.artist}`)
         .then((res) => res.json())
         .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
@@ -140,13 +140,13 @@ export default function Lyrical() {
         ></rect>
       </svg>
 
-      <main className={styles.main}>
+      <main >
         <button className={styles.back} onClick={() => router.push("/")}>
           {"<"}
         </button>
 
         {status === "authenticated" && session && data && song ? (
-          <>
+          <div className={styles.main}>
             <div
               className={styles.backdrop}
               style={{ backgroundImage: `url(${song?.image})` }}
@@ -175,7 +175,7 @@ export default function Lyrical() {
                 </h3>
               )}
             </div>
-          </>
+          </div>
         ) : status === "unauthenticated" ? (
           <div className={styles.login}>
             <h3>Please sign in with Spotify</h3>

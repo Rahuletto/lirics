@@ -61,7 +61,7 @@ export default function Home() {
   useEffect(() => {
     if (!sharing) {
       if (song && song.name && song.artist && !lyrics) {
-        fetch(`/api/lyrics?query=${song.name} ${song.artist}`)
+        fetch(`/py/lyrics?query=${song.name} ${song.artist}`)
           .then((res) => res.json())
           .then((d: { lyrics: Lyrics }) => {
             setLyrics(d.lyrics);
@@ -118,9 +118,9 @@ export default function Home() {
         ></rect>
       </svg>
 
-      <main className={styles.main}>
+      <main>
         {status === "authenticated" && session && data && song ? (
-          <>
+          <div className={styles.main}>
             <div
               className={styles.backdrop}
               style={{ backgroundImage: `url(${song?.image})` }}
@@ -326,7 +326,7 @@ export default function Home() {
                 )}
               </div>
             )}
-          </>
+          </div>
         ) : status === "unauthenticated" ? (
           <div className={styles.login}>
             <h3>Please sign in to use the app.</h3>
