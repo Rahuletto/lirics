@@ -42,5 +42,5 @@ const conf = {
   },
 };
 
-export default conf;
-// export default withPWA(conf);
+// export default conf;
+export default withPWA(conf);
