@@ -7,6 +7,7 @@ import useInterval from "@/lib/useInterval";
 import { Data } from "@/typings/Position";
 import { Lyric, Lyrics } from "@/typings/Lyrics";
 import { useRouter } from "next/router";
+import { useChange, useLyrics } from "@/providers/LyricsContext";
 
 export default function Home() {
   const router = useRouter();
@@ -19,10 +20,9 @@ export default function Home() {
     artist: string;
     uri: string;
   } | null>(null);
-  const [lyrics, setLyrics] = useState<Lyrics | null>(null);
 
-  const [drafts, setDrafts] = useState<any>(null);
-  const [selectedDraft, setSelected] = useState<number>(1);
+  const lyrics = useLyrics();
+  const setLyrics = useChange();
 
   const [sharing, setSharing] = useState(false);
 
@@ -60,37 +60,18 @@ export default function Home() {
 
   useEffect(() => {
     if (!sharing) {
-    setSelected(1);
-    if (song && song.name && song.artist) {
-      fetch(
-        `/api/spotify/lyrics?name=${song.name}&artist=${song.artist
-          .split(", ")
-          .join("|!|")}`
-      )
-        .then((res) => res.json())
-        .then((d: { lyrics: Lyrics; drafts: Lyrics[] }) => {
-          setLyrics(d.lyrics);
-          setDrafts(d.drafts);
-          localStorage.setItem("draft", String(1));
-        })
-        .catch((a) => {
-          console.log(a);
-        });
-    }
+      if (song && song.name && song.artist && !lyrics) {
+        fetch(`/api/lyrics?query=${song.name} ${song.artist}`)
+          .then((res) => res.json())
+          .then((d: { lyrics: Lyrics }) => {
+            setLyrics(d.lyrics);
+          })
+          .catch((a) => {
+            console.log(a);
+          });
+      }
     }
   }, [song, sharing]);
-
-  useEffect(() => {
-    if (drafts && drafts[selectedDraft][0]) {
-      setLyrics(drafts[selectedDraft]);
-      localStorage.setItem("draft", String(selectedDraft));
-    }
-  }, [selectedDraft]);
-
-  useEffect(() => {
-    const d = localStorage.getItem("draft");
-    if (Number(d)) setSelected(Number(d));
-  }, []);
 
   function generateShare(bool: boolean) {
     if (!lyrics || !data) return;
@@ -162,7 +143,7 @@ export default function Home() {
               }
             >
               <div
-              className="left"
+                className="left"
                 style={
                   sharing
                     ? {
@@ -170,7 +151,11 @@ export default function Home() {
                         display: "flex",
                         gap: 22,
                       }
-                    : { display: "flex", gap: 22, width: '-webkit-fill-available' }
+                    : {
+                        display: "flex",
+                        gap: 22,
+                        width: "-webkit-fill-available",
+                      }
                 }
               >
                 <img src={song.image} className={styles.image} />
@@ -216,25 +201,25 @@ export default function Home() {
               )}
             </div>
 
-            {sharing && <svg
+            {sharing && (
+              <svg
                 className="logo-share"
-                  width="146"
-                  height="177"
-                  viewBox="0 0 146 177"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.51184 70.7904L85.3063 38.2967C94.8913 34.4889 97.973 22.4382 91.3927 14.4964V14.4964C82.3178 3.54393 64.5153 9.961 64.5153 24.1846V147.983C64.5153 162.036 78.0504 172.123 91.5172 168.107L143.542 152.59"
-                    stroke="#EFEFEF"
-                    stroke-width="16"
-                  />
-                </svg>}
+                width="146"
+                height="177"
+                viewBox="0 0 146 177"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.51184 70.7904L85.3063 38.2967C94.8913 34.4889 97.973 22.4382 91.3927 14.4964V14.4964C82.3178 3.54393 64.5153 9.961 64.5153 24.1846V147.983C64.5153 162.036 78.0504 172.123 91.5172 168.107L143.542 152.59"
+                  stroke="#EFEFEF"
+                  stroke-width="16"
+                />
+              </svg>
+            )}
 
             {sharing ? (
               <div className="flex-wrap">
-                
-
                 <div style={{ cursor: "pointer", gap: 18 }} id="sharelyric">
                   {lyrics && lyrics[0] ? (
                     <>
@@ -341,32 +326,6 @@ export default function Home() {
                 )}
               </div>
             )}
-            <div className={styles.drafts}>
-              <button
-                onClick={(e) => {
-                  setSelected(0);
-                  localStorage.setItem("draft", String(0));
-                }}
-              >
-                1
-              </button>
-              <button
-                onClick={(e) => {
-                  setSelected(1);
-                  localStorage.setItem("draft", String(1));
-                }}
-              >
-                2
-              </button>
-              <button
-                onClick={(e) => {
-                  setSelected(2);
-                  localStorage.setItem("draft", String(2));
-                }}
-              >
-                3
-              </button>
-            </div>
           </>
         ) : status === "unauthenticated" ? (
           <div className={styles.login}>

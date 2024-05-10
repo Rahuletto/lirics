@@ -1,6 +1,5 @@
-import Head from "next/head";
-
 import styles from "@/styles/Home.module.css";
+import loader from "@/styles/Loader.module.css";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useInterval from "@/lib/useInterval";
@@ -8,27 +7,28 @@ import { Data } from "@/typings/Position";
 import { Lyric, Lyrics } from "@/typings/Lyrics";
 import msTosec from "@/lib/msTosec";
 import { useRouter } from "next/router";
+import { useChange, useLyrics } from "@/providers/LyricsContext";
 
 export default function Home() {
   const router = useRouter();
   const { data: session, status } = useSession();
 
   const [data, setData] = useState<Data | null>(null);
-  const [delay, setDelay] = useState(0)
+  const [delay, setDelay] = useState(0);
   const [song, setSong] = useState<{
     image: string;
     name: string;
     artist: string;
     uri: string;
   } | null>(null);
-  const [lyrics, setLyrics] = useState<Lyrics | null>(null);
+
+  const lyrics = useLyrics()
+  const setLyrics = useChange();
+
   const [current, setCurrent] = useState<Lyric | null>(null);
 
   const [time, setTime] = useState(Date.now());
   const [currentTime, setCurrentTime] = useState(0);
-
-  const [drafts, setDrafts] = useState<any>(null);
-  const [selectedDraft, setSelected] = useState<number>(1);
 
   const [hail, setHail] = useState("");
 
@@ -54,7 +54,8 @@ export default function Home() {
   useEffect(() => {
     if (data)
       setCurrentTime(
-        data.progress_ms + (data.is_playing ? time - data.timestamp + (delay * 1000) : 0) 
+        data.progress_ms +
+          (data.is_playing ? time - data.timestamp + delay * 1000 : 0)
       );
   }, [time, data]);
 
@@ -85,7 +86,7 @@ export default function Home() {
             setData(d.data);
             if (!song || song?.uri !== (d.data as Data).item.uri) {
               setLyrics(null);
-              setDelay(0)
+              setDelay(0);
               setCurrent(null);
               setSong({
                 image: d.data.item.album.images[0].url,
@@ -108,41 +109,17 @@ export default function Home() {
   }, 800);
 
   useEffect(() => {
-    setSelected(1);
-    if (song && song.name && song.artist) {
-      fetch(
-        `/api/spotify/lyrics?name=${song.name}&artist=${song.artist
-          .split(", ")
-          .join("|!|")}`
-      )
+    if (song && song.name && song.artist && !lyrics) {
+      fetch(`/api/lyrics?query=${song.name} ${song.artist}`)
         .then((res) => res.json())
-        .then((d: { lyrics: Lyrics; drafts: Lyrics[] }) => {
+        .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
-          setDrafts(d.drafts);
-          localStorage.setItem("draft", String(1));
         })
         .catch((a) => {
           console.log(a);
         });
     }
   }, [song]);
-
-  useEffect(() => {
-    if (drafts && drafts[selectedDraft][0]) {
-      setLyrics(drafts[selectedDraft]);
-      setCurrent(
-        drafts[selectedDraft]
-          .filter((a: Lyric) => msTosec(currentTime) >= a.seconds)
-          .splice(-1)[0]
-      );
-      localStorage.setItem("draft", String(selectedDraft));
-    }
-  }, [selectedDraft]);
-
-  useEffect(() => {
-    const d = localStorage.getItem("draft");
-    if (Number(d)) setSelected(Number(d));
-  }, []);
 
   return (
     <>
@@ -167,9 +144,9 @@ export default function Home() {
         ></rect>
       </svg>
 
-      <main className={styles.main}>
+      <main>
         {status === "authenticated" && session && data && song ? (
-          <>
+          <div className={styles.main}>
             <div
               className={styles.backdrop}
               style={{ backgroundImage: `url(${song?.image})` }}
@@ -215,43 +192,49 @@ export default function Home() {
                 </h3>
               )}
             </div>
-            <div className={styles.drafts}>
-              <input type="number" value={delay} onChange={(e) => setDelay(Number(e.target.value))} ></input>
-              <button
-                onClick={(e) => {
-                  setSelected(0);
-                  localStorage.setItem("draft", String(0));
-                }}
-              >
-                1
-              </button>
-              <button
-                onClick={(e) => {
-                  setSelected(1);
-                  localStorage.setItem("draft", String(1));
-                }}
-              >
-                2
-              </button>
-              <button
-                onClick={(e) => {
-                  setSelected(2);
-                  localStorage.setItem("draft", String(2));
-                }}
-              >
-                3
-              </button>
-            </div>
-          </>
+          </div>
         ) : status === "unauthenticated" ? (
           <div className={styles.login}>
-            <h3>Please sign in to use the app.</h3>
+            <h3>Please sign in with Spotify</h3>
             <button onClick={() => signIn("spotify")}>Sign In</button>
           </div>
         ) : (
           <div className={styles.login}>
-            <h3>Loading</h3>
-            <button onClick={() => signOut()}>Sign Out</button>
+            <svg
+              className={loader.loadingRing}
+              viewBox="0 0 128 128"
+              width="128px"
+              height="128px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--green)" />
+                  <stop offset="100%" stopColor="var(--green)" />
+                </linearGradient>
+              </defs>
+              <circle
+                className={loader.circle}
+                r="56"
+                cx="64"
+                cy="64"
+                fill="none"
+                stroke="var(--green)"
+                strokeWidth="16"
+                strokeLinecap="round"
+              />
+              <path
+                className={loader.worm}
+                d="M92,15.492S78.194,4.967,66.743,16.887c-17.231,17.938-28.26,96.974-28.26,96.974L119.85,59.892l-99-31.588,57.528,89.832L97.8,19.349,13.636,88.51l89.012,16.015S81.908,38.332,66.1,22.337C50.114,6.156,36,15.492,36,15.492a56,56,0,1,0,56,0Z"
+                fill="none"
+                stroke="url(#gradient)"
+                strokeWidth="16"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeDasharray="44 1111"
+                strokeDashoffset="10"
+              />
+            </svg>
           </div>
         )}
       </main>

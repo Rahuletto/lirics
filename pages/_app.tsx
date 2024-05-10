@@ -5,6 +5,7 @@ import { useWakeLock } from "react-screen-wake-lock";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import { useEffect, useLayoutEffect } from "react";
+import { LyricsProvider } from "@/providers/LyricsContext";
 
 const inter = Inter({
   fallback: ["sans-serif"],
@@ -19,8 +20,7 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
-  const { request } = useWakeLock()
-
+  const { request } = useWakeLock();
 
   useEffect(() => {
     request();
@@ -78,7 +78,9 @@ export default function App({
           }
         `}
       </style>
-      <Component {...pageProps} />
+      <LyricsProvider>
+        <Component {...pageProps} />
+      </LyricsProvider>
     </SessionProvider>
   );
 }
