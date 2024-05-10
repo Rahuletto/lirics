@@ -15,6 +15,31 @@ const conf = {
     };
     return config;
   },
+  rewrites: async () => {
+    return [
+      {
+        source: '/api/lyrics',
+        destination:
+          process.env.NODE_ENV === 'development'
+            ? 'http://localhost:8000/api/lyrics'
+            : '/api/lyrics',
+      },
+      {
+        source: '/docs',
+        destination:
+          process.env.NODE_ENV === 'development'
+            ? 'http://localhost:8000/docs'
+            : '/api/docs',
+      },
+      {
+        source: '/openapi.json',
+        destination:
+          process.env.NODE_ENV === 'development'
+            ? 'http://localhost:8000/openapi.json'
+            : '/api/openapi.json',
+      },
+    ];
+  },
 };
 
 export default conf;
