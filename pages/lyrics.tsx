@@ -105,7 +105,7 @@ export default function Lyrical() {
 
   useEffect(() => {
     if (song && song.name && song.artist && !lyrics) {
-      fetch(`/api/py/lyrics?query=${song.name} ${song.artist}`)
+      fetch(`/py/lyrics?query=${song.name} ${song.artist}`)
         .then((res) => res.json())
         .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
