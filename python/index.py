@@ -21,7 +21,7 @@ def extract_lyric_info_array(array):
 
 app = FastAPI()
 
-@app.get("/py/ping")
+@app.get("/api/py/ping")
 def ping():
     return {"message": "Pong"}  # Always return as Dictionary (JSON)
 
@@ -32,7 +32,7 @@ padding = [
       { "seconds": 9999, "lyrics": "." },
       { "seconds": 9999, "lyrics": " " }
 ]
-@app.get("/py/lyrics")
+@app.get("/api/py/lyrics")
 def lyrics(query: str): 
     try:
         lrc = syncedlyrics.search(query, allow_plain_format=True)
