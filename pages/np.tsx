@@ -8,8 +8,8 @@ export default function Lyrical() {
   const { status } = useSession();
 
   useEffect(() => {
-    if(status === "authenticated") router.push('/');
-    
+    if(status === "unauthenticated") router.push('/');
+
     setTimeout(() => router.reload(), 4000)
   }, [router])
   return (
@@ -52,7 +52,7 @@ export default function Lyrical() {
             <h3>Please sign in to use the app.</h3>
             <button onClick={() => signIn("spotify")}>Sign In</button>
           </div>
-        ) : (
+        ) : status === "authenticated" ? (
           <div className={styles.login}>
             <h3>You are currently not playing.</h3>
             <div style={{display: "flex", gap: 18}}>
@@ -63,7 +63,7 @@ export default function Lyrical() {
             </div>
             
           </div>
-        )}
+        ) : <></>}
       </main>
     </>
   );
