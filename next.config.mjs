@@ -19,14 +19,6 @@ const conf = {
   rewrites: async () => {
     return [
       {
-        source: '/py/:path*',
-        destination:
-          process.env.NODE_ENV === 'development'
-            ? 'http://127.0.0.1:8000/py/:path*'
-            : '/py/',
-      },
-      
-      {
         source: "/docs",
         destination:
           process.env.NODE_ENV === "development"

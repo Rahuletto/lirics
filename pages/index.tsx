@@ -114,7 +114,7 @@ export default function Home() {
 
   useEffect(() => {
     if (song && song.name && song.artist && !lyrics) {
-      fetch(`/py/lyrics?query=${song.name} ${song.artist}`)
+      fetch(`https://lirical-api.vercel.app/lyrics?query=${song.name} ${song.artist}`)
         .then((res) => res.json())
         .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
