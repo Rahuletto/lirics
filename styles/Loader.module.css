@@ -14,27 +14,6 @@
 }
 
 
-.credits {
-  color: #adadafd9;
-  font-size: 14px;
-  width: 100vw;
-  position: absolute;
-  bottom: 24px;
-  text-align: center;
-}
-
-.credits a {
-  background-color: var(--accent);
-  color: var(--background-dark);
-  padding: 2px 8px;
-  border-radius: 6px;
-  text-decoration: none;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-}
-
 .loadingRing {
   -webkit-animation-name: bump;
   animation-name: bump;
@@ -200,6 +179,11 @@
   }
 }
 
+.worm {
+  background-color: #fefefe;
+  color: #fefefe
+}
+
 .loader {
   position: fixed;
   z-index: 120;
@@ -237,10 +221,4 @@
   display: flex;
   gap: 20px;
   padding: 16px;
-}
-
-.loadTitle {
-  color: var(--accent);
-  opacity: 0.8;
-  font-weight: 600;
 }

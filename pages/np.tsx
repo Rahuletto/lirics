@@ -8,7 +8,9 @@ export default function Lyrical() {
   const { status } = useSession();
 
   useEffect(() => {
-    setTimeout(() => router.reload(), 3000)
+    if(status === "authenticated") router.push('/');
+    
+    setTimeout(() => router.reload(), 4000)
   }, [router])
   return (
     <>
