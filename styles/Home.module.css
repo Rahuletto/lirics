@@ -30,6 +30,7 @@
 }
 
 .lyrics {
+  max-width: 800px;
   margin-top: -80px;
   min-height: 250px;
   display: -webkit-box;
@@ -59,7 +60,7 @@
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    black 25%,
+    black 15%,
     black 75%,
     transparent 100%
   );
@@ -68,14 +69,14 @@
     left top,
     left bottom,
     from(transparent),
-    color-stop(25%, black),
+    color-stop(15%, black),
     color-stop(75%, black),
     to(transparent)
   );
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    black 25%,
+    black 15%,
     black 75%,
     transparent 100%
   );

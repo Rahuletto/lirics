@@ -61,10 +61,10 @@ export default function Home() {
   useEffect(() => {
     if (!sharing) {
       if (song && song.name && song.artist && !lyrics) {
-        fetch(`/lyrics?track=${song.name}&artist=${song.artist}`)
+        fetch(`/api/lyrics?track=${song.name}&artist=${song.artist}`)
           .then((res) => res.json())
           .then((d: { lyrics: Lyrics }) => {
-            if(!Array.prototype.isPrototypeOf(d.lyrics)) setLyrics([{seconds: 0, lyrics: "Sorry, This cannot be shared"}]);
+            if (!Array.prototype.isPrototypeOf(d.lyrics)) setLyrics([{ seconds: 0, lyrics: "Sorry, This cannot be shared" }]);
             else setLyrics(d.lyrics);
           })
           .catch((a) => {
@@ -80,7 +80,7 @@ export default function Home() {
     if (bool && sharable) {
       setLyrics(
         sharable.map(
-          (sec) => lyrics.find((obj) => obj.seconds === sec) as Lyric
+          (sec) => (lyrics as Lyric[]).find((obj) => obj.seconds === sec) as Lyric
         )
       );
       setSharable([]);
@@ -131,16 +131,16 @@ export default function Home() {
               style={
                 sharing
                   ? {
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      position: "static",
-                    }
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    position: "static",
+                  }
                   : {
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                    }
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }
               }
             >
               <div
@@ -148,15 +148,15 @@ export default function Home() {
                 style={
                   sharing
                     ? {
-                        opacity: 0,
-                        display: "flex",
-                        gap: 22,
-                      }
+                      opacity: 0,
+                      display: "flex",
+                      gap: 22,
+                    }
                     : {
-                        display: "flex",
-                        gap: 22,
-                        width: "-webkit-fill-available",
-                      }
+                      display: "flex",
+                      gap: 22,
+                      width: "-webkit-fill-available",
+                    }
                 }
               >
                 <img src={song.image} className={styles.image} />
@@ -225,7 +225,7 @@ export default function Home() {
                   {lyrics && lyrics[0] ? (
                     <>
                       <div id="lirics">
-                        {lyrics.map((a, i) => (
+                        {(lyrics as Lyric[]).map((a, i) => (
                           <h2 key={i} className={"current lyric"}>
                             {a.lyrics}
                           </h2>
@@ -277,26 +277,26 @@ export default function Home() {
                 id="homelyric"
                 className={styles.lyrics}
               >
-                {lyrics && lyrics[0] ? (
+                {lyrics && lyrics[0] && lyrics as Lyric[] ? (
                   <>
-                    {lyrics.map((a, i) => (
+                    {(lyrics as Lyric[]).map((a, i) => (
                       <p
                         style={{ opacity: 0.3 }}
                         key={i}
                         onClick={() =>
                           !sharable[0] ||
-                          lyrics
-                            .slice(
-                              lyrics.findIndex(
-                                (e) =>
-                                  e.seconds == sharable[sharable.length - 1]
-                              ),
-                              lyrics.findIndex(
-                                (e) =>
-                                  e.seconds == sharable[sharable.length - 1]
-                              ) + 2
-                            )
-                            .find((e) => e.seconds == a.seconds)
+                            (lyrics as Lyric[])
+                              .slice(
+                                (lyrics as Lyric[]).findIndex(
+                                  (e) =>
+                                    e.seconds == sharable[sharable.length - 1]
+                                ),
+                                (lyrics as Lyric[]).findIndex(
+                                  (e) =>
+                                    e.seconds == sharable[sharable.length - 1]
+                                ) + 2
+                              )
+                              .find((e) => e.seconds == a.seconds)
                             ? changeShareable(a.seconds)
                             : ""
                         }
@@ -304,10 +304,10 @@ export default function Home() {
                           sharable.find((e) => e == a.seconds)
                             ? "current lyric"
                             : "lyric",
-                          lyrics
+                          (lyrics as Lyric[])
                             .slice(
-                              lyrics.findIndex((e) => e.seconds == sharable[0]),
-                              lyrics.findIndex(
+                              (lyrics as Lyric[]).findIndex((e) => e.seconds == sharable[0]),
+                              (lyrics as Lyric[]).findIndex(
                                 (e) => e.seconds == sharable[0]
                               ) + 6
                             )

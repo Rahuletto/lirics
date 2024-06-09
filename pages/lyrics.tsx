@@ -45,8 +45,8 @@ export default function Lyrical() {
 
   useEffect(() => {
     centerInParent();
-    if (lyrics && lyrics[0] && current) {
-      const cL = lyrics.filter((a) => a.seconds === current.seconds);
+    if (lyrics && lyrics as Lyric[] && Array.prototype.isPrototypeOf(lyrics) && current) {
+      const cL = (lyrics as Lyric[]).filter((a) => a.seconds === current.seconds);
       if (cL && cL.length > 1) {
         const h = cL.reduce(function (a, b) {
           return a.lyrics.length < b.lyrics.length ? a : b;
@@ -96,16 +96,16 @@ export default function Lyrical() {
   }
 
   useInterval(() => {
-    if (lyrics && Array.prototype.isPrototypeOf(lyrics) && data) {
+    if (lyrics && lyrics as Lyric[] && Array.prototype.isPrototypeOf(lyrics) && data) {
       setCurrent(
-        lyrics.filter((a) => msTosec(currentTime) >= a.seconds).splice(-1)[0]
+        (lyrics as Lyric[]).filter((a) => msTosec(currentTime) >= a.seconds).splice(-1)[0]
       );
     }
   }, 1000);
 
   useEffect(() => {
     if (song && song.name && song.artist && !lyrics) {
-      fetch(`/lyrics?track=${song.name}&artist=${song.artist}`)
+      fetch(`/api/lyrics?track=${song.name}&artist=${song.artist}`)
         .then((res) => res.json())
         .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
@@ -152,9 +152,10 @@ export default function Lyrical() {
               style={{ backgroundImage: `url(${song?.image})` }}
             ></div>
             <div className={["scrollable", styles.lyrics].join(" ")}>
-              {lyrics && Array.prototype.isPrototypeOf(lyrics) && lyrics.slice(0, -4)[0] ? (
+            {lyrics && Array.prototype.isPrototypeOf(lyrics) ? 
+              Array.prototype.isPrototypeOf(lyrics) && lyrics[0] ? (
                 <>
-                  {lyrics.map((a, i) => (
+                  {(lyrics as Lyric[]).map((a, i) => (
                     <p
                       key={i}
                       className={
@@ -173,7 +174,17 @@ export default function Lyrical() {
                 <h3 className="focus" style={{ opacity: "0.8" }}>
                   We still cookin it.
                 </h3>
-              )}
+              ) : lyrics && lyrics.length >0 ? 
+              <p
+              className={
+                "current lyric"
+              }
+            >
+              {lyrics as string}
+              </p>
+              : <h3 className="focus" style={{ opacity: "0.8" }}>
+              We still cookin it.
+            </h3> }
             </div>
           </div>
         ) : status === "unauthenticated" ? (

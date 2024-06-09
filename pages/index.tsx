@@ -14,7 +14,7 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   const [data, setData] = useState<Data | null>(null);
-  const [delay, setDelay] = useState(0);
+  const [delay, setDelay] = useState(-5);
   const [song, setSong] = useState<{
     image: string;
     name: string;
@@ -40,8 +40,9 @@ export default function Home() {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
+
       parent.scrollTop +=
-        50 + childRect.top - parentRect.top - parent.clientHeight / 2;
+        childRect.top - parentRect.top - 200 + parentRect.top / 2;
     }
   }
 
@@ -55,15 +56,15 @@ export default function Home() {
     if (data)
       setCurrentTime(
         data.progress_ms +
-          (data.is_playing ? time - data.timestamp + delay * 1000 : 0)
+        (data.is_playing ? time - data.timestamp + delay * 1000 : 0)
       );
   }, [time, data]);
 
   useEffect(() => {
     if (current) {
       centerInParent();
-      if (lyrics && lyrics[0] && current) {
-        const cL = lyrics.filter((a) => a.seconds === current.seconds);
+      if (lyrics && lyrics as Lyric[] && Array.prototype.isPrototypeOf(lyrics) && current) {
+        const cL = (lyrics as Lyric[]).filter((a) => a.seconds === current.seconds);
         if (cL && cL.length > 1) {
           const h = cL.reduce(function (a, b) {
             return a.lyrics.length < b.lyrics.length ? a : b;
@@ -72,7 +73,7 @@ export default function Home() {
         }
       }
     }
-  }, [current]);
+  }, [current?.seconds, lyrics]);
 
   useInterval(() => {
     if (session && status === "authenticated") {
@@ -101,20 +102,22 @@ export default function Home() {
   }, 3000);
 
   useInterval(() => {
-    if (lyrics && lyrics[0] && data) {
-      const cur = lyrics
-        .filter((a) => msTosec(currentTime) >= a.seconds)
+    if (lyrics && lyrics as Lyric[] && Array.prototype.isPrototypeOf(lyrics) && data) {
+      const cur = (lyrics as Lyric[])
+        .filter((a) => msTosec(currentTime) >= a.seconds && msTosec(currentTime) + 2 <= a.seconds)
         .splice(-1)[0];
-      const [ext, clean] = extractAndRemoveParentheses(cur.lyrics);
+      if (cur && cur.lyrics) {
+        const [ext, clean] = extractAndRemoveParentheses(cur.lyrics);
 
-      setCurrent({ seconds: cur.seconds, lyrics: clean.toString() });
-      setHail(ext);
+        setCurrent({ seconds: cur.seconds, lyrics: clean.toString() });
+        setHail(ext);
+      }
     }
   }, 800);
 
   useEffect(() => {
     if (song && song.name && song.artist && !lyrics) {
-      fetch(`/lyrics?track=${song.name}&artist=${song.artist}`)
+      fetch(`/api/lyrics?track=${song.name.split(',').join('')}&artist=${song.artist}`)
         .then((res) => res.json())
         .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
@@ -173,49 +176,48 @@ export default function Home() {
               id="homelyric"
               className={styles.lyrics}
             >
-              {lyrics && Array.prototype.isPrototypeOf(lyrics) ? 
-              Array.prototype.isPrototypeOf(lyrics) && lyrics[0] ? (
-                <>
-                  {lyrics.map((a, i) => (
-                    <>
-                      <p
-                        key={i}
-                        className={
-                          current && a.seconds === current.seconds
-                            ? "current lyric"
-                            : "lyric"
-                        }
-                      >
-                        {a.lyrics}
-                      </p>
-                      {hail && a.lyrics.includes(hail) && <p
-                        key={i+1000}
-                        className={
-                          "hail lyric"
-                        }
-                      >
-                        {hail}
-                      </p>}
-                    </>
-                  ))}
-                </>
-              ) : (
-                <h3 className="focus" style={{ opacity: "0.8" }}>
-                  We still cookin it.
-                </h3>
-              )
-              : lyrics && lyrics.length >0 ? 
-              <p
-              key={i}
-              className={
-                "current lyric"
-              }
-            >
-              {lyrics as string}
-              </p>
-              : <h3 className="focus" style={{ opacity: "0.8" }}>
-              We still cookin it.
-            </h3> }
+              {lyrics && Array.prototype.isPrototypeOf(lyrics) ?
+                Array.prototype.isPrototypeOf(lyrics) && lyrics[0] ? (
+                  <>
+                    {(lyrics as Lyric[]).map((a, i) => (
+                      <>
+                        <p
+                          key={i}
+                          className={
+                            current && a.seconds === current.seconds
+                              ? "current lyric"
+                              : "lyric"
+                          }
+                        >
+                          {a.lyrics}
+                        </p>
+                        {hail && a.lyrics.includes(hail) && <p
+                          key={i + 1000}
+                          className={
+                            "hail lyric"
+                          }
+                        >
+                          {hail}
+                        </p>}
+                      </>
+                    ))}
+                  </>
+                ) : (
+                  <h3 className="focus" style={{ opacity: "0.8" }}>
+                    We still cookin it.
+                  </h3>
+                )
+                : lyrics && lyrics.length > 0 ?
+                  <p
+                    className={
+                      "current lyric"
+                    }
+                  >
+                    {lyrics as string}
+                  </p>
+                  : <h3 className="focus" style={{ opacity: "0.8" }}>
+                    We still cookin it.
+                  </h3>}
             </div>
           </div>
         ) : status === "unauthenticated" ? (
@@ -272,7 +274,7 @@ function extractAndRemoveParentheses(text: string) {
 
   const extractedText = text.match(pattern) || [];
 
-  const cleanedText = text.replace(pattern, "").trim();
+  const cleanedText = text.replace(extractedText.toString(), "").trim();
 
   return [extractedText[0] ? extractedText.toString() : "", cleanedText];
 }
