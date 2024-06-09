@@ -114,7 +114,7 @@ export default function Home() {
 
   useEffect(() => {
     if (song && song.name && song.artist && !lyrics) {
-      fetch(`https://lirical-api.vercel.app/lyrics?query=${song.name} ${song.artist}`)
+      fetch(`/lyrics?track=${song.name}&artist=${song.artist}`)
         .then((res) => res.json())
         .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
@@ -173,7 +173,8 @@ export default function Home() {
               id="homelyric"
               className={styles.lyrics}
             >
-              {lyrics && lyrics[0] ? (
+              {lyrics && Array.prototype.isPrototypeOf(lyrics) ? 
+              Array.prototype.isPrototypeOf(lyrics) && lyrics[0] ? (
                 <>
                   {lyrics.map((a, i) => (
                     <>
@@ -202,7 +203,19 @@ export default function Home() {
                 <h3 className="focus" style={{ opacity: "0.8" }}>
                   We still cookin it.
                 </h3>
-              )}
+              )
+              : lyrics && lyrics.length >0 ? 
+              <p
+              key={i}
+              className={
+                "current lyric"
+              }
+            >
+              {lyrics as string}
+              </p>
+              : <h3 className="focus" style={{ opacity: "0.8" }}>
+              We still cookin it.
+            </h3> }
             </div>
           </div>
         ) : status === "unauthenticated" ? (

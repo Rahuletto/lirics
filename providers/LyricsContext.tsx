@@ -1,4 +1,4 @@
-import { Lyrics } from "@/typings/Lyrics";
+import { Lyric } from "@/typings/Lyrics";
 import {
   createContext,
   ReactNode,
@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-const LyricContext = createContext<Lyrics | null>(null);
+const LyricContext = createContext<Lyric[] | string | null>(null);
 const LyricChangeContext = createContext<any>(null);
 
 export function useLyrics() {
@@ -19,7 +19,7 @@ export function useChange() {
 }
 
 export function LyricsProvider({ children }: { children: ReactNode }) {
-  const [lyric, setLyric] = useState<Lyrics | null>(null);
+  const [lyric, setLyric] = useState<Lyric[] | string | null>(null);
 
   return (
     <LyricContext.Provider value={lyric}>

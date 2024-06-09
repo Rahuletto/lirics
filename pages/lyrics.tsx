@@ -57,7 +57,7 @@ export default function Lyrical() {
   }, [current]);
 
   useInterval(() => {
-    if (session) {
+    if (session && status === "authenticated") {
       fetch("/api/spotify/pos", {
         method: "GET",
       })
@@ -96,7 +96,7 @@ export default function Lyrical() {
   }
 
   useInterval(() => {
-    if (lyrics && lyrics[0] && data) {
+    if (lyrics && Array.prototype.isPrototypeOf(lyrics) && data) {
       setCurrent(
         lyrics.filter((a) => msTosec(currentTime) >= a.seconds).splice(-1)[0]
       );
@@ -105,7 +105,7 @@ export default function Lyrical() {
 
   useEffect(() => {
     if (song && song.name && song.artist && !lyrics) {
-      fetch(`https://lirical-api.vercel.app/lyrics?query=${song.name} ${song.artist}`)
+      fetch(`/lyrics?track=${song.name}&artist=${song.artist}`)
         .then((res) => res.json())
         .then((d: { lyrics: Lyrics }) => {
           setLyrics(d.lyrics);
@@ -152,7 +152,7 @@ export default function Lyrical() {
               style={{ backgroundImage: `url(${song?.image})` }}
             ></div>
             <div className={["scrollable", styles.lyrics].join(" ")}>
-              {lyrics && lyrics.slice(0, -4)[0] ? (
+              {lyrics && Array.prototype.isPrototypeOf(lyrics) && lyrics.slice(0, -4)[0] ? (
                 <>
                   {lyrics.map((a, i) => (
                     <p

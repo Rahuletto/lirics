@@ -61,10 +61,11 @@ export default function Home() {
   useEffect(() => {
     if (!sharing) {
       if (song && song.name && song.artist && !lyrics) {
-        fetch(`https://lirical-api.vercel.app/lyrics?query=${song.name} ${song.artist}`)
+        fetch(`/lyrics?track=${song.name}&artist=${song.artist}`)
           .then((res) => res.json())
           .then((d: { lyrics: Lyrics }) => {
-            setLyrics(d.lyrics);
+            if(!Array.prototype.isPrototypeOf(d.lyrics)) setLyrics([{seconds: 0, lyrics: "Sorry, This cannot be shared"}]);
+            else setLyrics(d.lyrics);
           })
           .catch((a) => {
             console.log(a);
