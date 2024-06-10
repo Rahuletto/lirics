@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 import { useEffect, useLayoutEffect } from "react";
 import { LyricsProvider } from "@/providers/LyricsContext";
+import { SongProvider } from "@/providers/SongContext";
 
 const inter = Inter({
   fallback: ["sans-serif"],
@@ -28,6 +29,7 @@ export default function App({
 
   return (
     <SessionProvider session={session}>
+
       <Head>
         <link rel="manifest" href="/manifest.json" />
 
@@ -78,9 +80,11 @@ export default function App({
           }
         `}
       </style>
-      <LyricsProvider>
-        <Component {...pageProps} />
-      </LyricsProvider>
+      <SongProvider>
+        <LyricsProvider>
+          <Component {...pageProps} />
+        </LyricsProvider>
+      </SongProvider>
     </SessionProvider>
   );
 }

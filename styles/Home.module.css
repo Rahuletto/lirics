@@ -1,8 +1,8 @@
 .main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 72px;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: 1fr;
+gap: 78px;
   height: -webkit-fill-available;
   height: stretch;
   min-height: 93vh;
@@ -12,25 +12,28 @@
   align-items: center;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
-  justify-content: flex-start;
+  justify-items: flex-end;
   padding: 2rem 4rem;
-  background: -o-radial-gradient(
-    center,
-    ellipse,
-    rgb(0 0 0 / 0%) 0%,
-    rgb(0 0 0) 70%,
-    rgb(0 0 0) 100%
-  );
-  background: radial-gradient(
-    ellipse at center,
-    rgb(0 0 0 / 0%) 0%,
-    rgb(0 0 0) 70%,
-    rgb(0 0 0) 100%
-  );
+  width: 100vw;
+  z-index: 2;
 }
 
+.lirics {
+  display: flex;
+  width: 100vw;
+  z-index: 2;
+  background: rgba(0,0,0,0.35) !important;
+}
+
+.lyricContainer {
+  width: 100%;
+  position: relative;
+}
 .lyrics {
+  position: absolute;
+  left: 0;
   max-width: 800px;
+  padding-bottom: 100px;
   margin-top: -80px;
   min-height: 250px;
   display: -webkit-box;
@@ -113,6 +116,49 @@
   -moz-border-radius: 24px;
   -ms-border-radius: 24px;
   -o-border-radius: 24px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  min-height: 100vh;
+}
+
+.spotify {
+  border-radius: 50px;
+  background-color: #1db954;
+  color: rgb(10, 10, 10);
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+.dialog {
+  background-color: rgba(255, 255, 255, 0.058);
+  padding: 48px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -o-border-radius: 24px;
+}
+
+.dialog p {
+  max-width: 350px;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 36px;
 }
 
 .left,
@@ -277,6 +323,8 @@
 
 @media only screen and (max-width: 700px) {
   .main {
+    display: flex;
+    width: 89vw;
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
     -ms-flex-direction: column-reverse;
@@ -291,6 +339,8 @@
     padding-top: 0.5rem !important;
     padding-bottom: 4rem !important;
     height: 97vh;
+    padding-left: 2rem;
+
   }
 
   .lyrics {

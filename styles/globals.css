@@ -173,7 +173,9 @@ input {
   color: var(--color);
 }
 button, input {
-  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 18px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.058);
   padding: 12px 24px;
   cursor: pointer;
   border: 0px none;
@@ -329,4 +331,60 @@ button, input {
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
+}
+
+.frame-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 2em;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  -ms-border-radius: 2em;
+  -o-border-radius: 2em;
+}
+.frame-bg .bg-color, .frame-bg .bg-black {
+  width: 200%;
+  position: absolute;
+  border-radius: 100em;
+  animation: rotate 60s linear infinite;
+  -webkit-border-radius: 100em;
+  -moz-border-radius: 100em;
+  -ms-border-radius: 100em;
+  -o-border-radius: 100em;
+  -webkit-animation: rotate 60s linear infinite;
+}
+.frame-bg .bg-color {
+  right: 0;
+  top: 0;
+  filter: blur(120px);
+  z-index: 1;
+  mix-blend-mode: luminosity;
+  -webkit-filter: blur(100px);
+}
+.frame-bg .bg-black {
+  left: 0;
+  bottom: 0;
+  filter: blur(120px);
+  z-index: 1;
+  animation-direction: reverse;
+  animation-delay: 10s;
+  -webkit-filter: blur(100px);
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+ }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+}
 }
