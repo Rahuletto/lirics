@@ -213,12 +213,9 @@ input {
   transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   font-size: 26px;
   opacity: 0.3 !important;
-  scale: 0.6;
   color: var(--color);
-  font-weight: 600;
+
   transform-origin: left;
-  margin-top: -6px;
-  margin-bottom: 3px;
   -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   -moz-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   -ms-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
@@ -324,6 +321,9 @@ input {
 @media only screen and (max-width: 440px) {
   p.lyric {
     font-size: 32px !important;
+    scale: 0.6;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
   }
 }
 @media only screen and (min-width: 500px) {
@@ -335,16 +335,16 @@ input {
 
   .lyric {
     font-weight: 600 !important;
-    font-size: 36px !important;
+    font-size: 32px !important;
+    margin-top: 22px;
+    margin-bottom: 22px;
   }
 
-  .current {
-    margin: 0px !important;
-  }
 }
 
 @media only screen and (max-width: 500px) {
   .left {
     flex-direction: row;
+    margin-bottom: 32px !important;
   }
 }

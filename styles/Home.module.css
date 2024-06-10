@@ -119,7 +119,6 @@
   max-width: 800px;
 
   opacity: 0.5;
-  margin: 0;
   font-weight: 600;
   text-align: left;
 }
@@ -313,7 +312,8 @@
     padding-top: 0.5rem !important;
     padding-bottom: 4rem !important;
     height: 97vh;
-    padding-left: 2rem;
+
+    
 
   }
 
@@ -357,6 +357,7 @@
 @media only screen and (max-width: 440px) {
   .main {
     padding: 24px !important;
+    padding-bottom: 4rem;
   }
 }
 
