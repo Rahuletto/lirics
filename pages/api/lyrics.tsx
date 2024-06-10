@@ -1,3 +1,5 @@
+import { RAWLyrics } from "@/typings/Lyrics";
+
 export default async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
@@ -12,14 +14,15 @@ export default async function GET(req: Request) {
 
   const response = await fetch(
     `https://lrclib.net/api/search?track_name=${encodeURIComponent(
-      track
+      track.split("(")[0]
     )}&artist_name=${encodeURIComponent(artist)}`
   );
-  const lyrics = await response.json();
+  const lyrics: RAWLyrics[] = await response.json();
+  const syncedLy = lyrics.find((a: any) => a.syncedLyrics);
 
-  if (lyrics[0]) {
-    const timed = lyrics[0].syncedLyrics;
-    if (splitLyric(timed)[0]) {
+  if (syncedLy && syncedLy?.artistName.includes(artist.split(", ")[0])) {
+    const timed = syncedLy.syncedLyrics;
+    if (timed && splitLyric(timed)[0]) {
       const extract = extractLyrics(splitLyric(timed));
       return new Response(
         JSON.stringify({ song: track, lyrics: extract, synced: true })
@@ -35,9 +38,7 @@ export default async function GET(req: Request) {
     }
   } else {
     const r = await fetch(
-      `https://lrclib.net/api/search?q=${encodeURIComponent(
-        track + " " + artist
-      )}`
+      `https://lrclib.net/api/search?q=${encodeURIComponent(track)}`
     );
     const l = await r.json();
     if (l[0]) {

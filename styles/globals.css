@@ -38,7 +38,7 @@
 }
 
 * {
-  font-family: "SF Pro", var(--main-font);
+  font-family: "SF Pro", var(--main-font), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   transition: 0.3s ease-in-out;
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
@@ -66,27 +66,6 @@ button {
   color: var(--color);
 }
 
-.grain {
-  isolation: isolate;
-  position: fixed;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0.3;
-  mix-blend-mode: soft-light;
-}
-
-.scrollable {
-  -webkit-box-pack: start !important;
-  -ms-flex-pack: start !important;
-  justify-content: flex-start !important;
-  overflow: auto !important;
-  height: 80vh;
-  width: -webkit-fill-available !important;
-  width: stretch;
-  scroll-behavior: smooth;
-  margin-top: 0px !important;
-  gap: 8px !important;
-}
 
 .current.sharable {
   background-color: rgba(255, 255, 255, 0.6) !important;
@@ -137,6 +116,7 @@ button {
 #share-left div h1, #share-left div h3 {
 text-align: left;
 }
+
 @media only screen and (min-width: 500px) {
   #homelyric {
     gap: 10px !important;
@@ -155,21 +135,8 @@ text-align: left;
 #homelyric::-webkit-scrollbar {
   width: 0px;
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-input {
-  outline: none;
-  width: 50px;
-  color: var(--color);
-}
+
 button, input {
   font-size: 18px;
   font-weight: 500;
@@ -266,28 +233,6 @@ button, input {
   font-size: 22px !important;
 }
 
-.focus {
-  scale: 1.1;
-  animation: 0.3s bulk cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
-  transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  transform-origin: left;
-  max-width: 80vw;
-  -webkit-animation: 0.3s bulk cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
-  -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  -moz-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  -ms-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  -o-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-}
-
-.flex-wrap {
-  
-  z-index: 2;
-  position: absolute;
-  width: 100vw;
-  left: 0;
-  display: flex;
-  justify-content: center;
-}
 
 #sharelyric {
   max-width: 900px;

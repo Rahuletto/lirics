@@ -75,7 +75,7 @@ export default function Home() {
           song && song.name ? (
             <div className={styles.lirics}>
               <div className={styles.main}>
-                <div className={styles.left}>
+                <div className={styles.left} style={{cursor: "pointer"}} onClick={() => router.push('/share')}>
                   <img
                     src={song.image}
                     className={styles.image}

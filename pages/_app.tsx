@@ -2,15 +2,15 @@ import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useWakeLock } from "react-screen-wake-lock";
-import { Inter } from "next/font/google";
+import { Hind_Madurai } from "next/font/google";
 import Head from "next/head";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { LyricsProvider } from "@/providers/LyricsContext";
 import { SongProvider } from "@/providers/SongContext";
 
-const inter = Inter({
+const inter = Hind_Madurai({
   fallback: ["sans-serif"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   style: ["normal"],
   subsets: ["latin"],

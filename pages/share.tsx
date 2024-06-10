@@ -82,6 +82,7 @@ export default function Home() {
 
   return (
     <>
+    <button className={styles.back} onClick={() => router.push("/")}>{"<"}</button>
       {song && song?.image && (
         <div className="frame-bg">
           <img
