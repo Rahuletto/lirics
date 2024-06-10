@@ -105,8 +105,6 @@ button {
   -webkit-filter: blur(0px) !important;
 }
 #homelyric {
-  width: -webkit-fill-available !important;
-  width: stretch;
   gap: 8px !important;
   padding-top: 64px !important;
   scroll-behavior: smooth;
@@ -147,7 +145,7 @@ text-align: left;
   }
   .lyric {
     font-size: 36px !important;
-    font-weight: 800 !important;
+    font-weight: 600 !important;
   }
   .current {
     margin: 0px !important;
@@ -187,29 +185,22 @@ button, input {
 }
 
 .lyric {
-  filter: blur(2.5px);
   transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  max-width: 95%;
   font-size: 26px;
-  opacity: 0.5;
+  opacity: 0.3 !important;
   scale: 0.6;
   color: var(--color);
-  font-weight: 500;
+  font-weight: 600;
   transform-origin: left;
   margin-top: -6px;
   margin-bottom: 3px;
-  -webkit-filter: blur(2.5px);
   -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   -moz-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   -ms-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   -o-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
 }
 
-.hail {
-  filter: blur(0px);
-  opacity: 0.8 !important;
-  transform: scale(0.8) !important;
-}
+
 
 .current {
   filter: blur(0px);
@@ -219,6 +210,14 @@ button, input {
   font-weight: 700 !important;
   margin-top: 0px !important;
   margin-bottom: 6px !important;
+}
+
+.current span {
+  -webkit-background-clip: none !important;
+  background-clip: none !important;
+  -webkit-text-fill-color: var(--color) !important ;
+  text-fill-color: var(--color) !important;
+  color: var(--color) !important;
 }
 
 ::-webkit-scrollbar {
@@ -262,9 +261,9 @@ button, input {
   p.lyric {
     font-size: 32px !important;
   }
-  #sharelyric h2.current {
-    font-size: 22px !important;
-  }
+}
+#sharelyric h2.current {
+  font-size: 22px !important;
 }
 
 .focus {
@@ -297,6 +296,7 @@ button, input {
   background: rgba(0, 0, 0, 0.4);
   border-radius: 24px;
   width: 85vw;
+  max-width: 500px;
 }
 
 .logo-share {
@@ -342,11 +342,6 @@ button, input {
   pointer-events: 0;
   z-index: 0;
   overflow: hidden;
-  border-radius: 2em;
-  -webkit-border-radius: 2em;
-  -moz-border-radius: 2em;
-  -ms-border-radius: 2em;
-  -o-border-radius: 2em;
 }
 .frame-bg .bg-color, .frame-bg .bg-black {
   width: 200%;
@@ -386,5 +381,15 @@ button, input {
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
+}
+}
+
+@keyframes textShine {
+  
+  0% {
+      background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
 }
 }

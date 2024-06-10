@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 0.5fr 1fr;
   grid-template-rows: 1fr;
-gap: 78px;
+  gap: 78px;
   height: -webkit-fill-available;
   height: stretch;
   min-height: 93vh;
@@ -14,25 +14,38 @@ gap: 78px;
   -ms-flex-pack: start;
   justify-items: flex-end;
   padding: 2rem 4rem;
-  width: 100vw;
+  width: 89vw;
   z-index: 2;
 }
 
 .lirics {
   display: flex;
+  flex-direction: column;
   width: 100vw;
+  height: 100vh;
   z-index: 2;
   background: rgba(0,0,0,0.35) !important;
 }
 
-.lyricContainer {
+.shareContainer {
+  max-width: 800px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lyricContainer, .shareContainer {
+  height: 100vh;
   width: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 .lyrics {
   position: absolute;
   left: 0;
-  max-width: 800px;
   padding-bottom: 100px;
   margin-top: -80px;
   min-height: 250px;
@@ -87,11 +100,28 @@ gap: 78px;
   z-index: 2;
 }
 
+.hail {
+  filter: blur(0px);
+  font-size: 24px;
+  opacity: 0.4 !important;
+  transform: scale(0.8) !important;
+  transition: none;
+  font-weight: 500 !important;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  -webkit-transform: scale(0.8) !important;
+  -moz-transform: scale(0.8) !important;
+  -ms-transform: scale(0.8) !important;
+  -o-transform: scale(0.8) !important;
+}
+
 .lyrics p {
+  max-width: 800px;
   transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
   opacity: 0.5;
   margin: 0;
-  font-size: 22px;
   font-weight: 600;
   text-align: left;
   -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
