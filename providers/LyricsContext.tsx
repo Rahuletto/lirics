@@ -1,4 +1,4 @@
-import { Lyric, PlainLyrics, SyncedLyrics } from "@/typings/Lyrics";
+import { Karoke, Lyric, PlainLyrics, SyncedLyrics } from "@/typings/Lyrics";
 import {
   createContext,
   ReactNode,
@@ -8,11 +8,11 @@ import {
 } from "react";
 import { useSong, useTime } from "./SongContext";
 import useInterval from "@/lib/useInterval";
-import msTosec from "@/lib/msTosec";
+
 import { extractAndRemoveParentheses } from "@/lib/extract";
 
 const LyricContext = createContext<SyncedLyrics | PlainLyrics | null>(null);
-const CurrentContext = createContext<Lyric | null>(null);
+const CurrentContext = createContext<Karoke | null>(null);
 
 export function useLyrics() {
   return useContext(LyricContext);
@@ -23,16 +23,16 @@ export function useKaroke() {
 }
 
 export function LyricsProvider({ children }: { children: ReactNode }) {
-  const song = useSong()
-  const currentTime = useTime()
+  const song = useSong();
+  const currentTime = useTime();
 
   const [lyric, setLyric] = useState<SyncedLyrics | PlainLyrics | null>(null);
-  const [current, setCurrent] = useState<Lyric | null>(null);
+  const [current, setCurrent] = useState<Karoke | null>(null);
 
-  const [prevSong, setPrevSong] = useState<string>('');
+  const [prevSong, setPrevSong] = useState<string>("");
 
   useInterval(() => {
-
+    if(currentTime == 0 || currentTime == 1) setCurrent(null)
     if (lyric && lyric.synced) {
       const cur = lyric.lyrics
         .filter((a) => currentTime >= a.seconds && currentTime <= a.seconds + 1)
@@ -41,14 +41,22 @@ export function LyricsProvider({ children }: { children: ReactNode }) {
       if (cur && cur.lyrics) {
         const [ext, clean] = extractAndRemoveParentheses(cur.lyrics);
 
-        setCurrent({ seconds: cur.seconds, lyrics: clean.toString() });
+        setCurrent({
+          index: lyric.lyrics.findIndex((a) => a.seconds === cur.seconds),
+          lyric: { seconds: cur.seconds, lyrics: clean.toString() },
+        });
       }
     }
   }, 800);
 
   useEffect(() => {
     if (song && song.name && song.artist && prevSong !== song.name) {
-      fetch(`/api/lyrics?track=${song.name.split(',').join('')}&artist=${song.artist}`)
+      setCurrent(null);
+      fetch(
+        `/api/lyrics?track=${song.name.split(",").join("")}&artist=${
+          song.artist
+        }`
+      )
         .then((res) => res.json())
         .then((d: SyncedLyrics | PlainLyrics) => {
           setLyric(d);
@@ -58,12 +66,11 @@ export function LyricsProvider({ children }: { children: ReactNode }) {
           console.warn(a);
         });
     }
-  }, [song, prevSong])
+  }, [song, prevSong]);
 
   return (
     <LyricContext.Provider value={lyric}>
       <CurrentContext.Provider value={current}>
-
         {children}
       </CurrentContext.Provider>
     </LyricContext.Provider>

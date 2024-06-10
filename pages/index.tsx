@@ -32,19 +32,20 @@ export default function Home() {
 
   useEffect(() => {
     const parent = document.querySelector("#homelyric") as HTMLElement;
-    if (parent) parent.scrollTop = 0;
-  }, [song]);
+
+    if (!karoke?.index && parent) parent.scrollTop = 0;
+  }, [song, karoke]);
 
   useEffect(() => {
     centerInParent();
-  }, [karoke?.seconds]);
+  }, [karoke?.index]);
 
   const parseLyrics = (text: string) => {
     const parts = text.split(/(\([^)]+\))/g);
     return parts.map((part, index) => {
       if (part.startsWith("(") && part.endsWith(")")) {
         return (
-          <span key={index} className={styles.hail}>
+          <span key={index} id="hail" className={styles.hail}>
             {part}
           </span>
         );
@@ -75,7 +76,11 @@ export default function Home() {
           song && song.name ? (
             <div className={styles.lirics}>
               <div className={styles.main}>
-                <div className={styles.left} style={{cursor: "pointer"}} onClick={() => router.push('/share')}>
+                <div
+                  className={styles.left}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => router.push("/share")}
+                >
                   <img
                     src={song.image}
                     className={styles.image}
@@ -97,9 +102,11 @@ export default function Home() {
                         <>
                           <p
                             key={i}
-                            className={karoke && a.seconds === karoke.seconds
-                              ? `current lyric`
-                              : "lyric"}
+                            className={
+                              karoke && karoke.index === i
+                                ? `current lyric`
+                                : "lyric"
+                            }
                           >
                             {parseLyrics(a.lyrics)}
                           </p>

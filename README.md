@@ -1,13 +1,9 @@
-# lirics.
-Spotify lyrics didnt work so i took things into my own hands lol. A fun project.
+# lirics v2
+As spotify made lyrics into a premium feature, I came up with this cool idea to display accurate timed-lyrics in Apple Music style.
 
 > [!IMPORTANT]
-> Thanks to textyl api for providing lyrics
-
-
+> Thanks to LRCLib api for providing lyrics
 > Design inspired from Apple Music lyrics page.
-
-It also provides three drafts just to make sure you can vibe to the song even if the lyrics api mistakes it.
 
 ### Screenshots:
 PC/Laptop:
@@ -16,4 +12,4 @@ PC/Laptop:
 Mobile:
 ![narrow](/public/screenshot/narrow.png)
 
-This is not meant to be a production level application but rather a fun lil thing. Please self-host if possible.
+This can **only** be self-hosted as Spotify still didnt approve my application for the API to be used by public

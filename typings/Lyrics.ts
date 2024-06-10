@@ -23,3 +23,8 @@ export interface RAWLyrics {
   plainLyrics: string;
   syncedLyrics: string;
 }
+
+export interface Karoke {
+  lyric: Lyric;
+  index: number;
+}

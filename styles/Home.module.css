@@ -2,11 +2,10 @@
   display: grid;
   grid-template-columns: 0.5fr 1fr;
   grid-template-rows: 1fr;
-  gap: 78px;
+  gap: 128px;
   height: -webkit-fill-available;
   height: stretch;
   min-height: 93vh;
-
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -29,7 +28,6 @@
 
 .shareContainer {
   max-width: 800px;
-
   margin-left: auto;
   margin-right: auto;
 }
@@ -119,23 +117,11 @@
 
 .lyrics p {
   max-width: 800px;
-  transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+
   opacity: 0.5;
   margin: 0;
   font-weight: 600;
   text-align: left;
-  -webkit-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  -moz-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  -ms-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-  -o-transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-}
-
-.lyrics h3 {
-  transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
-
-  text-align: left;
-  margin: 0;
-  font-size: 36px;
 }
 
 .image {
@@ -207,32 +193,6 @@
     flex-direction: column;
 }
 
-.backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 99.8vw;
-  height: 99.8vh;
-  z-index: 1;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  filter: url(#blur);
-  -webkit-filter: url(#blur);
-}
-
-.backdrop::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  filter: url(#blur);
-  -webkit-filter: url(#blur);
-  background-color: #1717174d;
-  content: "";
-  width: 99.8vw;
-  height: 99.8vh;
-}
-
 .left {
   margin-left: 2rem;
   -webkit-user-select: none;
@@ -268,22 +228,6 @@
 .left h3 {
   margin: 0;
   text-align: center;
-}
-
-.drafts {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-  z-index: 3;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 6px;
-  opacity: 0;
-}
-
-.drafts:hover {
-  opacity: 1;
 }
 
 .back {
@@ -408,10 +352,6 @@
     text-align: left;
   }
 
-  .drafts {
-    bottom: initial;
-    top: 24px;
-  }
 }
 
 @media only screen and (max-width: 440px) {
