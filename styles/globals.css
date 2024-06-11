@@ -218,7 +218,7 @@ input {
   transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
   font-size: 26px;
   opacity: 0.3 !important;
-  scale: 0.95;
+  scale: 0.98;
   color: var(--color);
   transform-origin: left;
   -webkit-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
