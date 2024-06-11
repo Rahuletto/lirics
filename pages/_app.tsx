@@ -2,19 +2,28 @@ import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useWakeLock } from "react-screen-wake-lock";
-import { Hind_Madurai } from "next/font/google";
+import { Hind_Madurai, Noto_Sans } from "next/font/google";
 import Head from "next/head";
 import { useEffect } from "react";
 import { LyricsProvider } from "@/providers/LyricsContext";
 import { SongProvider } from "@/providers/SongContext";
 
-const inter = Hind_Madurai({
+const tamil = Hind_Madurai({
   fallback: ["sans-serif"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
   style: ["normal"],
   subsets: ["latin"],
-  variable: "--main-font",
+  variable: "--tamil-font",
+});
+
+const hindi = Noto_Sans({
+  fallback: ["sans-serif"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  style: ["normal"],
+  subsets: ["latin"],
+  variable: "--hindi-font",
 });
 
 export default function App({
@@ -76,7 +85,8 @@ export default function App({
       <style jsx global>
         {`
           html {
-            --main-font: ${inter.style.fontFamily};
+            --tamil-font: ${tamil.style.fontFamily};
+             --hindi-font: ${hindi.style.fontFamily};
           }
         `}
       </style>

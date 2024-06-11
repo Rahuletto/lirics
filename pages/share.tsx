@@ -6,9 +6,10 @@ import { useRouter } from "next/router";
 import { useSong } from "@/providers/SongContext";
 import Signin from "@/components/Signin";
 import NotPlaying from "@/components/NotPlaying";
-import { useKaroke, useLyrics } from "@/providers/LyricsContext";
-import { Fragment, useEffect, useState } from "react";
+import { useLyrics } from "@/providers/LyricsContext";
+import { useEffect, useState } from "react";
 import { Lyric } from "@/typings/Lyrics";
+import { parseLyrics } from ".";
 
 export default function Home() {
   const router = useRouter();
@@ -65,24 +66,9 @@ export default function Home() {
     if (parent) parent.scrollTop = 0;
   }, [song]);
 
-  const parseLyrics = (text: string) => {
-    const parts = text.split(/(\([^)]+\))/g);
-    return parts.map((part, index) => {
-      if (part.startsWith("(") && part.endsWith(")")) {
-        return (
-          <span key={index} className={styles.hail}>
-            {part}
-          </span>
-        );
-      } else {
-        return <Fragment key={index}>{part}</Fragment>;
-      }
-    });
-  };
-
   return (
     <>
-    <button className={styles.back} onClick={() => router.push("/")}>{"<"}</button>
+    <button className={styles.back} style={sharing ? {opacity: 0} : {}} onClick={() => router.push("/")}>{"<"}</button>
       {song && song?.image && (
         <div className="frame-bg">
           <img
@@ -118,8 +104,8 @@ export default function Home() {
             )}
             {sharing ? (
               <>
-                <div className="flex-wrap" onClick={() => generateShare(false)}>
-                  <div style={{ cursor: "pointer", gap: 18 }} id="sharelyric">
+                <div style={{zIndex: 1}} onClick={() => generateShare(false)}>
+                  <div  id="sharelyric">
                     {lyrics && lyrics[0] ? (
                       <>
                         <div id="lirics">

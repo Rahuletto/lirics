@@ -15,14 +15,13 @@ export default async function GET(req: Request) {
   const response = await fetch(
     `https://lrclib.net/api/search?track_name=${encodeURIComponent(
       track.split("(")[0]
-    )}&artist_name=${encodeURIComponent(artist)}`
+    )}&artist_name=${encodeURIComponent(artist.split(',')[0])}`
   );
   const lyrics: RAWLyrics[] = await response.json();
-  const syncedLy = lyrics.find((a: any) => a.syncedLyrics);
 
-
-  if (syncedLy && syncedLy?.artistName.includes(artist.split(", ")[0])) {
-    const timed = syncedLy.syncedLyrics;
+  if (lyrics[0]) {
+    const syncedLy = lyrics.find((a: any) => a.syncedLyrics);
+    const timed = syncedLy?.syncedLyrics;
     if (timed && splitLyric(timed)[0]) {
       const extract = extractLyrics(splitLyric(timed));
       return new Response(
@@ -38,14 +37,19 @@ export default async function GET(req: Request) {
       );
     }
   } else {
+
     const r = await fetch(
-      `https://lrclib.net/api/search?q=${encodeURIComponent(track)}`
+      `https://lrclib.net/api/search?q=${encodeURIComponent(track)}&artist_name=${encodeURIComponent(artist.split(',')[0])}`
     );
     const l = await r.json();
+
     if (l[0]) {
-      const timed = l[0].syncedLyrics;
-      if (timed) {
-        const extract = extractLyrics(timed);
+      const syncedLy = l.find((a: any) => a.syncedLyrics);
+      const timed = syncedLy?.syncedLyrics;
+
+      if (timed && splitLyric(timed)) {
+        const extract = extractLyrics(splitLyric(timed));
+
         return new Response(
           JSON.stringify({ song: track, lyrics: extract, synced: true })
         );

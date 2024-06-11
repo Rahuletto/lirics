@@ -48,22 +48,6 @@ export default function Home() {
     centerInParent();
   }, [karoke?.index]);
 
-  const parseLyrics = (text: string) => {
-    if (!text) return <Fragment>...</Fragment>;
-    const parts = text.split(/(\([^)]+\))/g);
-    return parts.map((part, index) => {
-      if (part.startsWith("(") && part.endsWith(")")) {
-        return (
-          <span key={index} id="hail" className={styles.hail}>
-            {part}
-          </span>
-        );
-      } else {
-        return <Fragment key={index}>{part}</Fragment>;
-      }
-    });
-  };
-
   return (
     <>
       {song && song?.image && (
@@ -121,7 +105,13 @@ export default function Home() {
                                       lyric.lyrics[i + 1].seconds - a.seconds
                                     }s`,
                                   }
-                                : karoke && karoke.index < i ? {filter: `blur(${(i - karoke.index)*0.5}px)`} : {}
+                                : karoke && karoke.index < i
+                                ? {
+                                    filter: `blur(${
+                                      (i - karoke.index) * 0.5
+                                    }px)`,
+                                  }
+                                : {}
                             }
                             className={`lyric ${
                               karoke && karoke.index === i
@@ -154,3 +144,32 @@ export default function Home() {
     </>
   );
 }
+
+export const parseLyrics = (text: string) => {
+  if (!text) return <span className="dots">...</span>;
+  const parts = text.split(/(\([^)]+\))/g);
+
+  const joined = parts.join("")
+  if (joined.startsWith("(") && joined.endsWith(")"))
+    return (
+      <span id="right" className={styles.hail}>
+        {parts}
+      </span>
+    );
+  return parts.map((part, index) => {
+    if (part.startsWith("(") && part.endsWith(")")) {
+      if(index == parts.length - 2 && parts[parts.length - 1] == "") return (
+        <span key={index} id="right" className={styles.hail}>
+          {part}
+        </span>
+      );
+      return (
+        <span key={index} className={styles.hail}>
+          {part}
+        </span>
+      );
+    } else {
+      return <Fragment key={index}>{part}</Fragment>;
+    }
+  });
+};

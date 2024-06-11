@@ -38,7 +38,7 @@
 }
 
 * {
-  font-family: "SF Pro", var(--main-font), system-ui, -apple-system,
+  font-family: "SF Pro", var(--tamil-font), var(--hindi-font), system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
     "Open Sans", "Helvetica Neue", sans-serif;
   transition: 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -156,9 +156,13 @@ input {
 
 #sharelyric h2.current {
   font-size: 22px !important;
+  margin-bottom: 0px !important;
 }
 
 #sharelyric {
+  z-index: 10;
+  cursor: pointer;
+  gap: 18px;
   max-width: 900px;
   display: flex;
   flex-direction: column;
@@ -185,6 +189,13 @@ input {
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
 }
+#right {
+  display: block;
+  width: 90%;
+  font-size: 32px;
+  transform-origin: left;
+  text-align: left;
+}
 
 #share-left div div {
   display: flex;
@@ -193,19 +204,20 @@ input {
   justify-content: center;
 }
 
+
 .current.sharable {
   background-color: rgba(255, 255, 255, 0.6) !important;
   color: rgba(0, 0, 0, 0.8) !important;
 }
 .sharable {
-  padding: 12px;
-  border-radius: 12px;
+  padding: 12px 18px;
+  border-radius: 16px;
   opacity: 0.6 !important;
-  -o-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -moz-border-radius: 12px;
+  -o-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -moz-border-radius: 16px;
   filter: blur(0px) !important;
-  -webkit-border-radius: 12px;
+  -webkit-border-radius: 16px;
   -webkit-filter: blur(0px) !important;
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -221,6 +233,7 @@ input {
   scale: 0.98;
   color: var(--color);
   transform-origin: left;
+  padding-left: 32px;
   -webkit-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
   -moz-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
   -ms-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
@@ -233,7 +246,7 @@ input {
 }
 .current {
   filter: blur(0px);
-  font-family: "SF Pro", var(--main-font) !important;
+  font-family: "SF Pro", var(--tamil-font), var(--hindi-font) !important;
   scale: 1 !important;
   opacity: 1 !important;
   text-shadow: 0px 0px 12px #efefef55;
@@ -259,6 +272,11 @@ input {
   color: var(--color) !important;
 }
 
+.current .dots {
+  animation: wide 3s cubic-bezier(0.18, 1.05, 0.19, 0.99) forwards;
+  -webkit-animation: wide 3s cubic-bezier(0.18, 1.05, 0.19, 0.99) forwards;
+}
+
 .logo-share {
   position: absolute;
   bottom: 22px;
@@ -267,6 +285,8 @@ input {
   height: 24px;
   opacity: 0.4;
 }
+
+
 
 .frame-bg {
   position: absolute;
@@ -314,7 +334,11 @@ input {
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
-  }
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+}
 
   100% {
     transform: rotate(360deg);
@@ -323,6 +347,15 @@ input {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
   }
+}
+
+@keyframes wide {
+  0%, 100% {
+    letter-spacing: 2px;
+  } 20% {
+    letter-spacing: 18px;
+  }
+
 }
 
 @keyframes textShine {
@@ -336,14 +369,20 @@ input {
 }
 
 
-@media only screen and (max-width: 440px) {
-  p.lyric {
-    font-size: 32px !important;
+@media only screen and (max-width: 640px) {
+  .lyric {
+    font-size: 22px !important;
     scale: 0.95;
     margin-top: 0px !important;
-    margin-bottom: 0px !important;
+    margin-bottom: 6px !important;
+    padding-left: 6px !important;
+  }
+
+  #homelyric {
+    width: 80vw !important;
   }
 }
+
 @media only screen and (min-width: 500px) {
   #homelyric {
     min-height: initial !important;

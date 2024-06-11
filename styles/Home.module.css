@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 0.5fr 1fr;
   grid-template-rows: 1fr;
-  gap: 128px;
+  gap: 84px;
   height: -webkit-fill-available;
   height: stretch;
   min-height: 93vh;
@@ -310,9 +310,13 @@
     padding-top: 0.5rem !important;
     padding-bottom: 4rem !important;
     height: 97vh;
+  }
 
-    
-
+  .lyricContainer, .shareContainer {
+    width: 80vw;
+    justify-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .lyrics {
