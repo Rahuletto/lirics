@@ -327,11 +327,11 @@ input {
 
 @keyframes textShine {
   0% {
-    text-shadow: 0px 0px 12px #efefef55;
+    text-shadow: 0px 0px 32px #efefef40;
   }
 
   100% {
-    text-shadow: 0px 0px 0px #efefef55;
+    text-shadow: 0px 0px 0px #efefef40;
   }
 }
 
@@ -339,7 +339,7 @@ input {
 @media only screen and (max-width: 440px) {
   p.lyric {
     font-size: 32px !important;
-    scale: 0.6;
+    scale: 0.95;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
   }
