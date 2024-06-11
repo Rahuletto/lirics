@@ -312,7 +312,7 @@
     height: 97vh;
   }
 
-  .lyricContainer, .shareContainer {
+  .shareContainer {
     width: 80vw;
     justify-content: flex-start;
     margin-left: auto;
