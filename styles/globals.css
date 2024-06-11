@@ -121,6 +121,7 @@ input {
 }
 
 #homelyric {
+  transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
   gap: 8px !important;
   padding-top: 64px !important;
   scroll-behavior: smooth;
@@ -128,6 +129,10 @@ input {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  -moz-transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  -ms-transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  -o-transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 #share-left img {
@@ -210,15 +215,15 @@ input {
 }
 
 .lyric {
-  transition: 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
   font-size: 26px;
   opacity: 0.3 !important;
   color: var(--color);
   transform-origin: left;
-  -webkit-transition: 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-  -moz-transition: 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-  -ms-transition: 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-  -o-transition: 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  -webkit-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
+  -moz-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
+  -ms-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
+  -o-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
 }
 
 .current {
