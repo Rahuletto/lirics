@@ -4,10 +4,11 @@ export default async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
   const track = searchParams.get("track");
-  const artist = searchParams.get("artist");
 
-  if (!track || !artist) {
-    return new Response(JSON.stringify({ error: "Missing track or artist" }), {
+  const album = searchParams.get("album");
+
+  if (!track) {
+    return new Response(JSON.stringify({ error: "Missing track from params" }), {
       status: 400,
     });
   }
@@ -15,7 +16,7 @@ export default async function GET(req: Request) {
   const response = await fetch(
     `https://lrclib.net/api/search?track_name=${encodeURIComponent(
       track.split("(")[0]
-    )}&artist_name=${encodeURIComponent(artist.split(',')[0])}`
+    )}&album_name=${album}`
   );
   const lyrics: RAWLyrics[] = await response.json();
 
@@ -39,7 +40,7 @@ export default async function GET(req: Request) {
   } else {
 
     const r = await fetch(
-      `https://lrclib.net/api/search?q=${encodeURIComponent(track)}&artist_name=${encodeURIComponent(artist.split(',')[0])}`
+      `https://lrclib.net/api/search?q=${encodeURIComponent(track)}&album_name=${album}`
     );
     const l = await r.json();
 

@@ -5,6 +5,7 @@ import msTosec from "@/lib/msTosec";
 import useInterval from "@/lib/useInterval";
 import { Lyric } from "@/typings/Lyrics";
 import { Data } from "@/typings/Position";
+import { Song } from "@/typings/Song";
 import { useSession, signOut, signIn } from "next-auth/react";
 import {
     createContext,
@@ -27,7 +28,7 @@ export function useTime() {
 }
 
 export function SongProvider({ children }: { children: ReactNode }) {
-    const [song, setSong] = useState<any>(null);
+    const [song, setSong] = useState<Song | null>(null);
     const [current, setCurrent] = useState<number>(0);
 
     const [data, setData] = useState<any>(null);
@@ -67,6 +68,7 @@ export function SongProvider({ children }: { children: ReactNode }) {
                             d.data.timestamp = Date.now();
                             if (!song || song?.uri !== (d.data as Data).item.uri) {
                                 setSong({
+                                    album: d.data.item.album.name,
                                     image: d.data.item.album.images[0].url,
                                     name: d.data.item.name,
                                     artist: d.data.item.artists.map((a) => a.name).join(", "),
