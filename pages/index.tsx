@@ -25,15 +25,16 @@ export default function Home() {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
-      const scrollPosition = parent.scrollTop + childRect.top - parentRect.top - 250 + parentRect.top / 2;
-
-        parent.scrollTo({
-            top: scrollPosition,
-            behavior: 'smooth'
-        });
-
-
-      
+      const scrollPosition =
+        parent.scrollTop +
+        childRect.top -
+        parentRect.top -
+        250 +
+        parentRect.top / 2;
+      parent.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth",
+      });
     }
   }
 
@@ -48,9 +49,7 @@ export default function Home() {
   }, [karoke?.index]);
 
   const parseLyrics = (text: string) => {
-    if(!text) return (
-       <Fragment>...</Fragment>
-    )
+    if (!text) return <Fragment>...</Fragment>;
     const parts = text.split(/(\([^)]+\))/g);
     return parts.map((part, index) => {
       if (part.startsWith("(") && part.endsWith(")")) {
@@ -113,14 +112,24 @@ export default function Home() {
                           <p
                             key={i}
                             data-seconds={a.seconds}
-                            style={karoke && karoke.index === i && lyric.lyrics[i+1] ? {animationDuration: `${(lyric.lyrics[i+1].seconds - a.seconds)}s`} : {}}
-                            className={
-                              `lyric ${
-                                karoke && karoke.index === i
-                                  ? "current"
-                                  : karoke && karoke.index > i ? "freeze" : ""
-                              }`
+                            style={
+                              karoke &&
+                              karoke.index === i &&
+                              lyric.lyrics[i + 1]
+                                ? {
+                                    animationDuration: `${
+                                      lyric.lyrics[i + 1].seconds - a.seconds
+                                    }s`,
+                                  }
+                                : karoke && karoke.index < i ? {filter: `blur(${(i - karoke.index)*0.5}px)`} : {}
                             }
+                            className={`lyric ${
+                              karoke && karoke.index === i
+                                ? "current"
+                                : karoke && karoke.index > i
+                                ? "freeze"
+                                : ""
+                            }`}
                           >
                             {parseLyrics(a.lyrics)}
                           </p>

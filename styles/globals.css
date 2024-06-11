@@ -227,6 +227,10 @@ input {
   -o-transition: 0.5s cubic-bezier(0.86, 0.31, 0.12, 0.76);
 }
 
+.lyric:hover {
+  filter: blur(0px) !important;
+  -webkit-filter: blur(0px) !important;
+}
 .current {
   filter: blur(0px);
   font-family: "SF Pro", var(--main-font) !important;
