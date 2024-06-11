@@ -25,8 +25,15 @@ export default function Home() {
       var parentRect = parent.getBoundingClientRect();
       var childRect = child.getBoundingClientRect();
 
-      parent.scrollTop +=
-        childRect.top - parentRect.top - 250 + parentRect.top / 2;
+      const scrollPosition = parent.scrollTop + childRect.top - parentRect.top - 250 + parentRect.top / 2;
+
+        parent.scrollTo({
+            top: scrollPosition,
+            behavior: 'smooth'
+        });
+
+
+      
     }
   }
 
@@ -41,6 +48,9 @@ export default function Home() {
   }, [karoke?.index]);
 
   const parseLyrics = (text: string) => {
+    if(!text) return (
+       <Fragment>...</Fragment>
+    )
     const parts = text.split(/(\([^)]+\))/g);
     return parts.map((part, index) => {
       if (part.startsWith("(") && part.endsWith(")")) {
@@ -102,10 +112,14 @@ export default function Home() {
                         <>
                           <p
                             key={i}
+                            data-seconds={a.seconds}
+                            style={karoke && karoke.index === i && lyric.lyrics[i+1] ? {animationDuration: `${(lyric.lyrics[i+1].seconds - a.seconds)}s`} : {}}
                             className={
-                              karoke && karoke.index === i
-                                ? `current lyric`
-                                : "lyric"
+                              `lyric ${
+                                karoke && karoke.index === i
+                                  ? "current"
+                                  : karoke && karoke.index > i ? "freeze" : ""
+                              }`
                             }
                           >
                             {parseLyrics(a.lyrics)}

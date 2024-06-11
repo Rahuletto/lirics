@@ -32,15 +32,16 @@ export function LyricsProvider({ children }: { children: ReactNode }) {
   const [prevSong, setPrevSong] = useState<string>("");
 
   useInterval(() => {
-    if(currentTime == 0 || currentTime == 1) setCurrent(null)
+    if (currentTime == 0 || currentTime == 1) setCurrent(null);
     if (lyric && lyric.synced) {
-      const cur = lyric.lyrics
-        .filter((a) => currentTime >= a.seconds && currentTime <= a.seconds + 1)
-        .splice(-1)[0];
+      const cur = lyric.lyrics.filter(
+        (a) => currentTime >= a.seconds && currentTime <= a.seconds + 1
+      ).splice(-1)[0]
 
-      if (cur && cur.lyrics) {
-        const [ext, clean] = extractAndRemoveParentheses(cur.lyrics);
-
+      if (cur && cur.lyrics != null) {
+        const [ext, clean] = extractAndRemoveParentheses(
+          cur.lyrics == "" ? "..." : cur.lyrics
+        );
         setCurrent({
           index: lyric.lyrics.findIndex((a) => a.seconds === cur.seconds),
           lyric: { seconds: cur.seconds, lyrics: clean.toString() },

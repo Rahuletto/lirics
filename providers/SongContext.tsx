@@ -36,7 +36,7 @@ export function SongProvider({ children }: { children: ReactNode }) {
     useInterval(
         () => {
             if (song?.name && data) {
-                const buffer = ((Date.now() + 200) - data.timestamp)
+                const buffer = ((Date.now() - 700) - data.timestamp)
                 setCurrent(
                     msTosec((data.progress_ms +
                         (data.is_playing ? buffer < (data.progress_ms + 3000) ? buffer : 0 : 0)))

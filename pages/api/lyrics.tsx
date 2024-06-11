@@ -20,6 +20,7 @@ export default async function GET(req: Request) {
   const lyrics: RAWLyrics[] = await response.json();
   const syncedLy = lyrics.find((a: any) => a.syncedLyrics);
 
+
   if (syncedLy && syncedLy?.artistName.includes(artist.split(", ")[0])) {
     const timed = syncedLy.syncedLyrics;
     if (timed && splitLyric(timed)[0]) {

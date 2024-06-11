@@ -23,7 +23,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 2;
-  background: rgba(0,0,0,0.35) !important;
+  background: rgba(53, 50, 50, 0.25) !important;
 }
 
 .shareContainer {
@@ -117,8 +117,6 @@
 
 .lyrics p {
   max-width: 800px;
-
-  opacity: 0.5;
   font-weight: 600;
   text-align: left;
 }
