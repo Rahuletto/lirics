@@ -68,7 +68,7 @@ export default function Home() {
 
   return (
     <>
-    <button className={styles.back} style={sharing ? {opacity: 0} : {}} onClick={() => router.push("/")}>{"<"}</button>
+    <button className={styles.back} style={sharing ? {opacity: 0} : {}} onClick={() => router.push("/")}>⏴</button>
       {song && song?.image && (
         <div className="frame-bg">
           <img

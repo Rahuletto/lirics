@@ -89,7 +89,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className={styles.lyricContainer}>
-                  <div className={styles.lyrics} id="homelyric">
+                  <div className={styles.lyrics} id="homelyric" onClick={() => router.push('/lyrics')}>
                     {lyric && lyric.synced ? (
                       lyric.lyrics.map((a, i) => (
                         <>
