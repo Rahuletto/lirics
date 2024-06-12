@@ -29,6 +29,7 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
           name: item.name,
           artist: item.artists.map((a) => a.name).join(", "),
           uri: item.uri,
+          duration: item.duration_ms
         };
 
         return res.status(200).json({ data: song });

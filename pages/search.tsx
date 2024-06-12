@@ -105,6 +105,7 @@ export default function Home() {
                             onClick={(e) =>
                               (e.target as any).classList.toggle("current")
                             }
+                            style={{animationIterationCount: "infinite"}}
                             data-seconds={a.seconds}
                             className={`lyric`}
                           >

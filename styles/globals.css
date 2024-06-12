@@ -150,6 +150,11 @@ input {
   text-align: left;
 }
 
+#left:hover #playback {
+  visibility: visible;
+  opacity: 1;
+}
+
 #homelyric::-webkit-scrollbar {
   width: 0px;
 }

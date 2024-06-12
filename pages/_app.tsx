@@ -5,8 +5,7 @@ import { useWakeLock } from "react-screen-wake-lock";
 import { Hind_Madurai, Noto_Sans } from "next/font/google";
 import Head from "next/head";
 import { useEffect } from "react";
-import { LyricsProvider } from "@/providers/LyricsContext";
-import { SongProvider } from "@/providers/SongContext";
+import Providers from "@/providers";
 
 const tamil = Hind_Madurai({
   fallback: ["sans-serif"],
@@ -38,7 +37,6 @@ export default function App({
 
   return (
     <SessionProvider session={session}>
-
       <Head>
         <link rel="manifest" href="/manifest.json" />
 
@@ -86,15 +84,13 @@ export default function App({
         {`
           html {
             --tamil-font: ${tamil.style.fontFamily};
-             --hindi-font: ${hindi.style.fontFamily};
+            --hindi-font: ${hindi.style.fontFamily};
           }
         `}
       </style>
-      <SongProvider>
-        <LyricsProvider>
-          <Component {...pageProps} />
-        </LyricsProvider>
-      </SongProvider>
+      <Providers>
+        <Component {...pageProps} />
+      </Providers>
     </SessionProvider>
   );
 }

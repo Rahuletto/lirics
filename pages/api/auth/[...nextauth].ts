@@ -25,7 +25,7 @@ export default NextAuth({
       clientSecret: process.env.SECRET as string,
       authorization: {
         params: {
-          scope: "user-read-playback-state user-read-currently-playing",
+          scope: "user-read-playback-state user-read-currently-playing user-read-private user-modify-playback-state",
         },
       },
     }),
