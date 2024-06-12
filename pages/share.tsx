@@ -118,7 +118,7 @@ export default function Home() {
                 />
               </svg>
             )}
-            {sharing ? (
+            {sharing && song ? (
               <>
                 <div style={{ zIndex: 1 }} onClick={() => generateShare(false)}>
                   <div id="sharelyric">

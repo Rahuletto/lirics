@@ -96,7 +96,7 @@ export default function Home() {
                     alt="music cover"
                     id="image"
                   />
-                  {!premium && (
+                  {premium && (
                     <div className={player.controls} id="playback">
                       <button onClick={() => seek(currentTime - 5)}>
                         <svg
