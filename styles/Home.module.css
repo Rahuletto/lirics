@@ -32,7 +32,7 @@
   margin-right: auto;
 }
 
-.lyricContainer, .shareContainer {
+.lyricContainer, .shareContainer, .fullContainer {
   height: 100vh;
   width: 100%;
   position: relative;
@@ -119,6 +119,11 @@
   max-width: 800px;
   font-weight: 600;
   text-align: left;
+}
+
+.fullContainer .lyrics {
+  mask-image: none !important;
+  background: transparent !important;
 }
 
 .image {
@@ -233,7 +238,8 @@
   top: 12px;
   left: 12px;
   font-weight: 800;
-  padding: 12px 16px !important;
+  padding: 6px !important;
+  padding-bottom: 2px !important;
 }
 
 @media only screen and (max-width: 900px) {
@@ -243,6 +249,14 @@
 }
 
 @media only screen and (max-height: 600px) {
+  .lyrics h3 {
+    font-size: 26px;
+  }
+
+  .hail {
+    font-size: 18px;
+  }
+  
   .left {
     width: 30vw; 
     gap: 32px;
@@ -290,29 +304,45 @@
   .lyrics h3 {
     font-size: 26px;
   }
+
+  .hail {
+    font-size: 18px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
   .main {
-    display: flex;
+    display: flex !important;
     width: 89vw;
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
     -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
-    -webkit-box-pack: space-evenly;
-    -ms-flex-pack: space-evenly;
-    justify-content: space-evenly;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
+    justify-content: space-around;
+    align-items: flex-end;
     padding: 2rem;
+    gap: 0px !important;
     padding-top: 0.5rem !important;
     padding-bottom: 4rem !important;
     height: 97vh;
   }
 
-  .lyricContainer, .shareContainer {
+  .fullContainer {
+    margin: 2rem;
+    margin-top: 64px;
+    width: 90vw;
+    height: 90vh;
+  }
+
+  .lyricContainer {
+    width: 90vw;
+    height: 70vh !important;
+    justify-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+   .shareContainer {
     width: 80vw;
     justify-content: flex-start;
     margin-left: auto;
@@ -354,6 +384,10 @@
     text-align: left;
   }
 
+  .hail {
+    font-size: 26px !important;
+  }
+
 }
 
 @media only screen and (max-width: 440px) {
@@ -362,6 +396,7 @@
     padding-bottom: 4rem;
   }
 }
+
 
 @media only screen and (max-width: 360px) {
   .image {

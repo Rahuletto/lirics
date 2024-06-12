@@ -89,7 +89,11 @@ export default function Home() {
                   </div>
                 </div>
                 <div className={styles.lyricContainer}>
-                  <div className={styles.lyrics} id="homelyric" onClick={() => router.push('/lyrics')}>
+                  <div
+                    className={styles.lyrics}
+                    id="homelyric"
+                    onClick={() => router.push("/lyrics")}
+                  >
                     {lyric && lyric.synced ? (
                       lyric.lyrics.map((a, i) => (
                         <>
@@ -128,7 +132,7 @@ export default function Home() {
                     ) : lyric && lyric?.lyrics?.length > 0 ? (
                       <p className="current lyric">{lyric.lyrics}</p>
                     ) : (
-                      <p>We are cookin it.</p>
+                      <p className="cooking">We are cookin it.</p>
                     )}
                   </div>
                 </div>
@@ -149,7 +153,7 @@ export const parseLyrics = (text: string) => {
   if (!text) return <span className="dots">...</span>;
   const parts = text.split(/(\([^)]+\))/g);
 
-  const joined = parts.join("")
+  const joined = parts.join("");
   if (joined.startsWith("(") && joined.endsWith(")"))
     return (
       <span id="right" className={styles.hail}>
@@ -158,11 +162,12 @@ export const parseLyrics = (text: string) => {
     );
   return parts.map((part, index) => {
     if (part.startsWith("(") && part.endsWith(")")) {
-      if(index == parts.length - 2 && parts[parts.length - 1] == "") return (
-        <span key={index} id="right" className={styles.hail}>
-          {part}
-        </span>
-      );
+      if (index == parts.length - 2 && parts[parts.length - 1] == "")
+        return (
+          <span key={index} id="right" className={styles.hail}>
+            {part}
+          </span>
+        );
       return (
         <span key={index} className={styles.hail}>
           {part}

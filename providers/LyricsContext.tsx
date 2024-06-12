@@ -56,7 +56,7 @@ export function LyricsProvider({ children }: { children: ReactNode }) {
       fetch(
         `/api/lyrics?track=${song.name.split(",").join("")}&artist=${
           song.artist
-        }&album=${song.album}`
+        }&album=${song.album}&artist=${song.artist}`
       )
         .then((res) => res.json())
         .then((d: SyncedLyrics | PlainLyrics) => {
