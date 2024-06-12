@@ -64,18 +64,23 @@ export default NextAuth({
         if (isTokenExpired) {
           if (!token.refresh_token) throw new Error("Missing refresh token");
           try {
-            const response = await spotifyApi.refreshAccessToken();
-            const responseTokens = response.body;
+            const refresh = spotifyApi.getRefreshToken();
+            if (refresh) {
+              const response = await spotifyApi.refreshAccessToken();
+              const responseTokens = response.body;
 
-            return {
-              ...token,
-              access_token: responseTokens.access_token,
-              expires_at: Math.floor(
-                Date.now() / 1000 + (responseTokens.expires_in as number)
-              ),
-              refresh_token:
-                responseTokens.refresh_token ?? token.refresh_token,
-            } as JWT;
+              return {
+                ...token,
+                access_token: responseTokens.access_token,
+                expires_at: Math.floor(
+                  Date.now() / 1000 + (responseTokens.expires_in as number)
+                ),
+                refresh_token:
+                  responseTokens.refresh_token ?? token.refresh_token,
+              } as JWT;
+            } else return {
+              ...token
+            };
           } catch (error) {
             console.error("Error refreshing access token", error);
             return {

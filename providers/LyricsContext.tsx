@@ -32,7 +32,6 @@ export function LyricsProvider({ children }: { children: ReactNode }) {
   const [prevSong, setPrevSong] = useState<string>("");
 
   useInterval(() => {
-    if (currentTime == 0 || currentTime == 1) setCurrent(null);
     if (lyric && lyric.synced) {
       const cur = lyric.lyrics.filter(
         (a) => currentTime >= a.seconds && currentTime <= a.seconds + 1
@@ -46,6 +45,8 @@ export function LyricsProvider({ children }: { children: ReactNode }) {
           index: lyric.lyrics.findIndex((a) => a.seconds === cur.seconds),
           lyric: { seconds: cur.seconds, lyrics: clean.toString() },
         });
+      } else if(currentTime < 5) {
+        setCurrent(null);
       }
     }
   }, 800);
