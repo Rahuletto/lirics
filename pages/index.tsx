@@ -53,6 +53,16 @@ export default function Home() {
     });
   }
 
+  function playback(pause: boolean) {
+    fetch("/api/spotify/playback", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pause ? { pause: true } : { play: true }),
+    });
+  }
+
   useEffect(() => {
     const parent = document.querySelector("#homelyric") as HTMLElement;
 
@@ -85,7 +95,7 @@ export default function Home() {
             <div className={styles.lirics}>
               <div className={styles.main}>
                 <div
-                  onClick={() => router.push("/share")}
+                  onClick={() => !premium && router.push("/share")}
                   className={styles.left}
                   style={{ cursor: "pointer" }}
                   id="left"
@@ -116,7 +126,7 @@ export default function Home() {
                         </svg>
                       </button>
 
-                      <button style={{ fontSize: "84px" }}>
+                      <button style={{ fontSize: "84px" }} onClick={() => playback(data?.is_playing || true)}>
                         {data?.is_playing ? (
                           <svg
                             stroke="currentColor"
