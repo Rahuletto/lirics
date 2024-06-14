@@ -206,7 +206,7 @@ export default function Home() {
                         <>
                           <p
                             key={i}
-                            onClick={() => premium && seek((a.seconds > 0 ? a.seconds - 2 : 0))}
+                            onClick={() => premium && seek((a.seconds > 2 ? a.seconds - 2 : 0))}
                             data-seconds={a.seconds}
                             style={
                               karoke &&
