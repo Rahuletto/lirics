@@ -126,7 +126,7 @@ export default function Home() {
                         </svg>
                       </button>
 
-                      <button style={{ fontSize: "84px" }} onClick={() => playback(data?.is_playing || true)}>
+                      <button style={{ fontSize: "84px" }} onClick={() => playback(data?.is_playing || false)}>
                         {data?.is_playing ? (
                           <svg
                             stroke="currentColor"
