@@ -108,7 +108,7 @@ export default function Home() {
                   />
                   {premium && (
                     <div className={player.controls} id="playback">
-                      <button onClick={() => seek(currentTime - 5)}>
+                      <button onClick={() => seek(currentTime - 10)}>
                         <svg
                           stroke="currentColor"
                           fill="none"
@@ -153,7 +153,7 @@ export default function Home() {
                           </svg>
                         )}
                       </button>
-                      <button onClick={() => seek(currentTime + 5)}>
+                      <button onClick={() => seek(currentTime + 10)}>
                         <svg
                           stroke="currentColor"
                           fill="none"
@@ -206,7 +206,7 @@ export default function Home() {
                         <>
                           <p
                             key={i}
-                            onClick={() => premium && seek(a.seconds)}
+                            onClick={() => premium && seek((a.seconds > 0 ? a.seconds - 2 : 0))}
                             data-seconds={a.seconds}
                             style={
                               karoke &&
